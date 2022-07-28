@@ -36,8 +36,8 @@
 	  		<div class="img bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/assets/img/bg2.jpg);">
 	  			<div class="user-logo">
 	  				<div class="img" style="background-image: url({{ $baseurl }}/assets/img/anime7.webp);"></div>
-	  				<h3>{{ auth()->user()->name }}</h3>
-            <h6>@<?php;?>{{ auth()->user()->username }}</h6>
+	  				<h3 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black">{{ auth()->user()->name }}</h3>
+            <h6 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black">@<?php;?>{{ auth()->user()->username }}</h6>
 	  			</div>
 	  		</div>
         <ul class="list-unstyled components mb-5">
