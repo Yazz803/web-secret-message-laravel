@@ -39,6 +39,10 @@ h2.lihatpesan {
     padding: 10px 0;
 }
 
+div.edit{
+    width: 50%;
+}
+
 @media (max-width: 700px){
     div.kartu{
         width: 100%;
@@ -56,5 +60,8 @@ h2.lihatpesan {
     }
     div.apacoba button {
         margin-right: 15px;
+    }
+    div.edit {
+        width: 100%;
     }
 }

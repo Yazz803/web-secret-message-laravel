@@ -51,7 +51,7 @@
               <a href="/lihatreply"><span class="fa fa-eye mr-3 notif"></span> Lihat Reply</a>
           </li>
           <li>
-              <a href="#"><span class="fa fa-edit mr-3 notif"></span> Edit Profile</a>
+              <a href="/editp"><span class="fa fa-edit mr-3 notif"></span> Edit Profile</a>
           </li>
           <li>
             @if (auth()->user()->fitur === 1)
