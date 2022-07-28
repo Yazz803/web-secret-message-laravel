@@ -16,6 +16,7 @@ class PesanController extends Controller
 
     public function store(Request $request){
         $validatedData = $request->validate([
+            'id' => 'required',
             'pesan' => 'required|min:2',
             'user_id' => 'required',
             'reply_id' => 'required',

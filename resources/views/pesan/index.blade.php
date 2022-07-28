@@ -66,6 +66,7 @@
         @endif
         <form action="/kirimpesan" method="post">
         @csrf
+            <input type="hidden" value="{{ mt_rand(10000,99999) }}" name="id">
             <input type="hidden" value="{{ $user->id }}" name="user_id">
             <input type="hidden" value="{{ auth()->user()->id }}" name="reply_id">
             <input type="hidden" value="{{ auth()->user()->name }}" name="name">
