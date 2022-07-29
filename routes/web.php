@@ -4,6 +4,7 @@ use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\FiturController;
 use App\Http\Controllers\LihatPesanController;
 use App\Http\Controllers\LihatReplyController;
+use App\Http\Controllers\LihatUserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\RegisterController;
@@ -47,3 +48,5 @@ Route::delete('/lihatreply/{komentar:id}', [LihatReplyController::class, 'destro
 Route::post('/fitur/{user:id}', [FiturController::class, 'fitur']);
 
 Route::get('/editp', [EditProfileController::class, 'index']);
+
+Route::get('/lihatuser', [LihatUserController::class, 'index']);

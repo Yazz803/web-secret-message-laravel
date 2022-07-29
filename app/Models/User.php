@@ -44,6 +44,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function scopeFilter($query, array $filters){
+        if(isset($filters['adminSearch']) ? $filters['adminSearch'] : false){
+            return $query->where('name','like','%' . $filters['adminSearch'] . '%') 
+            ->orWhere('username', 'like', '%'. $filters['adminSearch'] . '%');
+        }
+    }
+
     public function pesans(){
         return $this->hasMany(Pesan::class);
     }

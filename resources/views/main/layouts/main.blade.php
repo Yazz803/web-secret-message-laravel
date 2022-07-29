@@ -25,7 +25,7 @@
       <!-- MDB -->
       <link rel="stylesheet" href="{{ $baseurl }}/assets/css/mdb.min.css" />
   </head>
-  <body oncontextmenu="return false">
+  <body>
 		
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
@@ -41,17 +41,11 @@
 	  			</div>
 	  		</div>
         <ul class="list-unstyled components mb-5">
-          <li class="{{ Request::is('home') ? 'active' : '' }}">
-            <a href="/home"><span class="fa fa-home mr-3"></span> Home</a>
-          </li>
-          <li class="{{ Request::is('pesan', 'reply/*') ? 'active' : '' }}">
-              <a href="/pesan"><span class="fa fa-eye mr-3 notif"></span> Lihat Pesan</a>
-          </li>
-          <li class="{{ Request::is('lihatreply') ? 'active' : '' }}">
-              <a href="/lihatreply"><span class="fa fa-eye mr-3 notif"></span> Lihat Reply</a>
-          </li>
+          <h6 class="sidebar-heading text-center px-3 mt-4 mb-1 text-muted">
+            <span>ADMIN</span>
+          </h6>
           <li>
-              <a href="/editp"><span class="fa fa-edit mr-3 notif"></span> Edit Profile</a>
+            <a href="/lihatuser"><span class="fa fa-user mr-3"></span> Lihat User</a>
           </li>
           <li>
             @if (auth()->user()->fitur === 1)
@@ -73,6 +67,18 @@
             </h6>
             @endif
           </li>
+          <li class="{{ Request::is('home') ? 'active' : '' }}">
+            <a href="/home"><span class="fa fa-home mr-3"></span> Home</a>
+          </li>
+          <li class="{{ Request::is('pesan', 'reply/*') ? 'active' : '' }}">
+              <a href="/pesan"><span class="fa fa-eye mr-3 notif"></span> Lihat Pesan</a>
+          </li>
+          <li class="{{ Request::is('lihatreply') ? 'active' : '' }}">
+              <a href="/lihatreply"><span class="fa fa-eye mr-3 notif"></span> Lihat Reply</a>
+          </li>
+          <li>
+              <a href="/editp"><span class="fa fa-edit mr-3 notif"></span> Edit Profile</a>
+          </li>
           <li>
             <a href="/logout"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
           </li>
@@ -93,7 +99,7 @@
     {{-- MDBootstrap5 --}}
     <script type="text/javascript" src="/assets/js/mdb.min.js"></script>
     {{-- protect my website from inspect elements --}}
-    <script>
+    {{-- <script>
         document.onkeydown = function(e) {
         if(event.keyCode == 123) {
           return false;
@@ -111,6 +117,6 @@
           return false;
         }
       }
-    </script>
+    </script> --}}
   </body>
 </html>
