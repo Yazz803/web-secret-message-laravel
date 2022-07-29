@@ -45,7 +45,7 @@
           <h6 class="sidebar-heading text-center px-3 mt-4 mb-1 text-muted">
             <span>ADMIN</span>
           </h6>
-          <li>
+          <li class="{{ Request::is('lihatuser') ? 'active' : '' }} }}">
             <a href="/lihatuser"><span class="fa fa-user mr-3"></span> Lihat User</a>
           </li>
           @endcan
