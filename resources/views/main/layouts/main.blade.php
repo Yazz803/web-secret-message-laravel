@@ -41,12 +41,15 @@
 	  			</div>
 	  		</div>
         <ul class="list-unstyled components mb-5">
+          @can('admin')
           <h6 class="sidebar-heading text-center px-3 mt-4 mb-1 text-muted">
             <span>ADMIN</span>
           </h6>
           <li>
             <a href="/lihatuser"><span class="fa fa-user mr-3"></span> Lihat User</a>
           </li>
+          @endcan
+          @can('specialFeature')
           <li>
             @if (auth()->user()->fitur === 1)
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-light">
@@ -67,6 +70,7 @@
             </h6>
             @endif
           </li>
+          @endcan
           <li class="{{ Request::is('home') ? 'active' : '' }}">
             <a href="/home"><span class="fa fa-home mr-3"></span> Home</a>
           </li>

@@ -42,10 +42,6 @@ h2.lihatpesan {
 div.edit{
     width: 50%;
 }
-
-div.searching {
-    padding-left: 800px;
-}
 @media (max-width: 700px){
     div.kartu{
         width: 100%;
@@ -66,11 +62,5 @@ div.searching {
     }
     div.edit {
         width: 100%;
-    }
-}
-
-@media (max-width:1000px){
-    div.searching {
-        padding-left: 0;
     }
 }

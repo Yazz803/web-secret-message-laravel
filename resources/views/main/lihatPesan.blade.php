@@ -23,6 +23,7 @@
 
         <div class="apacoba d-flex">
           <a href="/reply/{{ $pesan->id }}" class="btn btn-light w-50 mx-auto mb-4"><b> Reply</b></a>
+          @can('specialFeature')
           @if (auth()->user()->fitur === 0)
               <form action="/fitur/{{ auth()->user()->id }}" method="POST">
                 @csrf
@@ -36,6 +37,7 @@
                 <button class="btn btn-success">Feature : ON</button>
               </form>
           @endif
+          @endcan
         </div>
     </div>
     @endforeach

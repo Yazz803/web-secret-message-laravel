@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\FiturController;
 use App\Http\Controllers\LihatPesanController;
@@ -9,7 +10,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReplyPesanController;
+use App\Http\Controllers\SpecialFeatureController;
 use App\Http\Controllers\UserDashboardController;
+use App\Http\Middleware\SpecialFeature;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
@@ -45,8 +48,10 @@ Route::get('/lihatreply', [LihatReplyController::class, 'index']);
 // Hapus reply
 Route::delete('/lihatreply/{komentar:id}', [LihatReplyController::class, 'destroy']);
 
-Route::post('/fitur/{user:id}', [FiturController::class, 'fitur']);
+Route::post('/fitur/{user:id}', [FiturController::class, 'fitur'])->middleware('specialFeature');
 
 Route::get('/editp', [EditProfileController::class, 'index']);
 
-Route::get('/lihatuser', [LihatUserController::class, 'index']);
+Route::get('/lihatuser', [AdminController::class, 'index'])->middleware('admin');
+
+Route::post('/specialFeature/{user:id}', [SpecialFeatureController::class, 'specialFeature'])->middleware('specialFeature');
