@@ -35,7 +35,7 @@
     </style>
     <title>Web Secret Message | {{ $title }}</title>
 </head>
-<body class="bg-dark">
+<body class="bg-dark" oncontextmenu="return false">
     <div class="container">
         @yield('container')
     </div>
@@ -44,7 +44,7 @@
 {{-- MDBootstrap5 --}}
 <script type="text/javascript" src="/assets/js/mdb.min.js"></script>
 {{-- protect my website from inspect elements --}}
-{{-- <script>
+<script>
   document.onkeydown = function(e) {
   if(event.keyCode == 123) {
      return false;
@@ -61,6 +61,6 @@
   if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
      return false;
   }
-} --}}
+}
 </script>
 </html>
