@@ -35,7 +35,7 @@
         </div>
 	  		<div class="img bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/assets/img/bg2.jpg);">
 	  			<div class="user-logo">
-	  				<div class="img" style="background-image: url({{ $baseurl }}/assets/img/anime7.webp);"></div>
+	  				<div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/assets/img/anime3.jpg);"></div>
 	  				<h3 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black">{{ auth()->user()->name }}</h3>
             <h6 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black">@<?php;?>{{ auth()->user()->username }}</h6>
 	  			</div>
@@ -80,7 +80,7 @@
           <li class="{{ Request::is('lihatreply') ? 'active' : '' }}">
               <a href="/lihatreply"><span class="fa fa-eye mr-3 notif"></span> Lihat Reply</a>
           </li>
-          <li>
+          <li class="{{ Request::is('editp') ? 'active' : '' }} }}">
               <a href="/editp"><span class="fa fa-edit mr-3 notif"></span> Edit Profile</a>
           </li>
           <li>

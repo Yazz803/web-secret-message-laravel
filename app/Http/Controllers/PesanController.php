@@ -11,6 +11,7 @@ class PesanController extends Controller
     public function index(User $user){
         return view('pesan.index',[
             'user' => $user,
+            'baseurl' => Controller::BASEURL,
             'kataRandom' => [
                 'Apakah kamu baik-baik saja?', 
                 'Udah makan belom?', 
@@ -52,5 +53,21 @@ class PesanController extends Controller
         Pesan::create($validatedData);
 
         return back()->with('success', 'Pesan berhasil dikirim!');
+    }
+
+    public function kirimpesan(Request $request){
+        $users = User::all();
+        $row = [];
+        foreach($users as $user){
+            $row[] = strtolower($user->username);
+        }
+
+        for($i=0;$i<count($users);++$i){
+            if($row[$i] === strtolower($request->kirimpesan)){
+                $cek = redirect('/u/'. strtolower($request->kirimpesan));
+                return $cek;
+            }
+        }
+        return redirect('/home#kirimpesan')->with('failed', 'Username <b>'.$request->kirimpesan.'</b> tidak ditemukan!');
     }
 }

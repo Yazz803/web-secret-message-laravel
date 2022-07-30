@@ -37,6 +37,23 @@
             <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
           </a>
         </div> --}}
+        <div class="card-body bg-light rounded" id="kirimpesan">
+          @if (session()->has('failed'))
+        <div class="alert alert-danger alert-dismissible fade show" id="hide" role="alert">
+            {!! session('failed') !!}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+          <center>
+            <form action="/kirimpesan" method="POST">
+              @csrf
+              <h5 class="card-title text-center">Kirim Pesan</h5>
+              <input type="text" autocomplete="off" name="kirimpesan" class="bg-dark w-75 rounded text-light py-2 px-4" placeholder="Masukan username teman" required>
+              <button type="submit" class="btn btn-primary mt-2">Masuk</button>
+            </form>
+          </center>
+        </div>
+        <br>
         <div class="card-body bg-light rounded">
           <h5 class="card-title text-center">Jumlah Pesan</h5>
           <center>
@@ -44,12 +61,12 @@
               <p>Terima kasih sudah mencoba aplikasi web saya :)</p>
           </center>
         </div>
-        <BR></BR>
+        <BR>
         <div class="card-body bg-light rounded">
           <h5 class="card-title text-center">Jumlah Reply</h5>
           <center>
-              <a href="/lihatreply" class="btn btn-dark mb-2 px-5"><b class="fs-5">{{ count($jmlReply) }}</b> Reply</a>
-              <p>Terima kasih sudah mencoba aplikasi web saya :)</p>
+            <a href="/lihatreply" class="btn btn-dark mb-2 px-5"><b class="fs-5">{{ count($jmlReply) }}</b> Reply</a>
+            <p>Terima kasih sudah mencoba aplikasi web saya :)</p>
           </center>
         </div>
     </div>
