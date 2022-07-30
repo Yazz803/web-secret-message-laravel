@@ -56,4 +56,4 @@ Route::get('/lihatuser', [AdminController::class, 'index'])->middleware('admin')
 
 Route::post('/specialFeature/{user:id}', [SpecialFeatureController::class, 'specialFeature'])->middleware('specialFeature');
 
-Route::post('/kirimpesan', [PesanController::class, 'kirimpesan']);
+Route::post('/kpesan', [PesanController::class, 'kirimpesan']);

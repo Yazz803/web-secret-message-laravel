@@ -33,9 +33,9 @@
 					<button type="button" id="sidebarCollapse" class="btn btn-primary fa fa-circle">
 	        </button>
         </div>
-	  		<div class="img bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/assets/img/bg2.jpg);">
+	  		<div class="img bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/assets/img/anime-sorry2.gif);">
 	  			<div class="user-logo">
-	  				<div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/assets/img/anime3.jpg);"></div>
+	  				<div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/assets/img/anime-sorry.gif);"></div>
 	  				<h3 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black">{{ auth()->user()->name }}</h3>
             <h6 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black">@<?php;?>{{ auth()->user()->username }}</h6>
 	  			</div>

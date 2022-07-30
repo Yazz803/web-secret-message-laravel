@@ -45,7 +45,7 @@
         </div>
         @endif
           <center>
-            <form action="/kirimpesan" method="POST">
+            <form action="/kpesan" method="POST">
               @csrf
               <h5 class="card-title text-center">Kirim Pesan</h5>
               <input type="text" autocomplete="off" name="kirimpesan" class="bg-dark w-75 rounded text-light py-2 px-4" placeholder="Masukan username teman" required>
