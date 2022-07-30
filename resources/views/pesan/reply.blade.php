@@ -32,15 +32,20 @@
               }, 3000); // <-- time in milliseconds
           </script>
           @if(session()->has('success'))
-          <div class="alert alert-dark alert-dismissible fade show" id="hide" role="alert">
+          <div class="alert alert-primary alert-dismissible mx-3 fade show" id="hide" role="alert">
           {!! session('success') !!}
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
           @endif
           <center>
-            <textarea name="komentar" id="" cols="25" rows="5" autofocus placeholder="Masukan komentar" class="p-2"></textarea>
+            <div class="areakomen mx-4">
+              <textarea name="komentar" id="" rows="2" autofocus placeholder="Masukan komentar" class="form-control px-2" style="padding-bottom: 100px" required></textarea>
+            </div>
             <br>
-            <button class="btn btn-light mb-4"><b> Kirim</b></button>
+            <div class="d-flex justify-content-between mx-5">
+              <a href="/pesan" class="btn btn-success mb-4">Lihat Pesan</a>
+              <button class="btn btn-light mb-4"><b> Kirim</b></button>
+            </div>
           </center>
         </form>
     </div>

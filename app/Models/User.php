@@ -51,11 +51,11 @@ class User extends Authenticatable
         }
     }
 
-    public function pesans(){
-        return $this->hasMany(Pesan::class);
-    }
+    // public function pesans(){
+    //     return $this->hasMany(Pesan::class);
+    // }
 
-    public function komentars(){
-        return $this->hasMany(Komentar::class);
-    }
+    // public function komentars(){
+    //     return $this->hasMany(Komentar::class);
+    // }
 }

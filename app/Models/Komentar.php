@@ -11,7 +11,7 @@ class Komentar extends Model
 
     protected $guarded = ['id']; // mass assignment
 
-    public function users(){
-        return $this->belongsTo(User::class);
-    }
+    // public function users(){
+    //     return $this->belongsTo(User::class);
+    // }
 }

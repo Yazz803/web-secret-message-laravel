@@ -20,6 +20,7 @@
             <th class="fs-5 text-center">Name</th>
             <th class="fs-5 text-center">Username</th>
             <th class="fs-5 text-center">Special Feature</th>
+            <th class="fs-5 text-center">Feature</th>
         </tr>
         @foreach ($users as $user)
         <tr>
@@ -38,6 +39,21 @@
                     <input type="hidden" name="special_feature" value="{{ $user->special_feature - 1 }}">
                     <button class="btn btn-success">ON</button>
                 </form>
+                @endif
+            </td>
+            <td class="text-center fs-6">
+                @if ($user->fitur === 0)
+                    <form action="/fitur/{{ $user->id }}" method="POST">
+                      @csrf
+                      <input type="hidden" name="fitur" value="{{ $user->fitur + 1 }}">
+                      <button class="btn btn-danger">OFF</button>
+                    </form>
+                @else
+                    <form action="/fitur/{{ $user->id }}" method="POST">
+                      @csrf
+                      <input type="hidden" name="fitur" value="{{ $user->fitur - 1 }}">
+                      <button class="btn btn-success">ON</button>
+                    </form>
                 @endif
             </td>
         </tr>

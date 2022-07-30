@@ -15,7 +15,7 @@
                 rgba(0, 0, 0, 0.5),
                 rgba(0, 0, 0, 0.5)
             ),
-            url(../assets/img/bg.jpg);
+            url(../assets/img/bg2.jpg);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -59,7 +59,7 @@
             }, 3000); // <-- time in milliseconds
         </script>
         @if(session()->has('success'))
-        <div class="alert alert-dark alert-dismissible fade show" id="hide" role="alert">
+        <div class="alert alert-primary alert-dismissible fade show" id="hide" role="alert">
         {!! session('success') !!}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -72,12 +72,12 @@
             <input type="hidden" value="{{ auth()->user()->name }}" name="name">
             <input type="hidden" value="{{ auth()->user()->username }}" name="username">
             <center>
-                <textarea name="pesan" id="" cols="30" rows="5" class="p-2" placeholder="Udah makan? Kabarnya gmn? hobinya apa? |  Tanyakan apa pun ke {{ $user->name }}" required></textarea><br>
-                <button type="submit" class="btn btn-dark mt-3 fw-bold">Kirim Pesan</button>
+                <textarea name="pesan" id="pesan" rows="4" class="form-control p-2" placeholder="{{ $kataRandom[mt_rand(0,22)]. " | Kirim Pesan apapun ke $user->name" }}" required></textarea><br>
+                <button type="submit" class="btn btn-success fw-bold">Kirim Pesan</button>
             </center>
         </form> 
         <br>
-        <a href="/home" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+        <a href="/home" class="btn btn-dark" style="position: absolute; bottom:0;left:0;right:0;border-radius:0;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
             <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
           </svg> My Dashboard</a>
     </div>
@@ -86,4 +86,5 @@
 {{-- bootstrap JS --}}
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+{{-- my javascript --}}
 </html>
