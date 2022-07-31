@@ -24,7 +24,7 @@
     @endforeach
   @else
       <p class="bg-dark px-5 py-2 bg-opacity-75 rounded text-light w-100 fs-4 text-center"><span class="fa fa-info-circle"></span> Belum ada Reply </p>
-      <img width="300px" loop="infinite" src="{{ $baseurl }}/assets/img/anime.gif" alt="">
+      <img width="300px" loop="infinite" src="{{ $baseurl }}/assets/img/anime-ding.webp" alt="">
   @endif
 </div>
 

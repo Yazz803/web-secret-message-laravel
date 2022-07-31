@@ -61,7 +61,7 @@
               </form>
             @else
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span> SPECIAL FEATURE</span>
+              <span class="fa fa-star text-warning"> SPECIAL FEATURE</span>
               <form action="/fitur/{{ auth()->user()->id }}" method="post">
                 @csrf
                 <input type="hidden" name="fitur" value="{{ auth()->user()->fitur + 1 }}">

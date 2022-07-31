@@ -17,7 +17,7 @@
                 @csrf
                 <!-- Name input -->
                 <div class="form-outline mb-4">
-                  <input type="text" name="name" autofocus id="form1Example13" class="form-control form-control-lg @error('name') is-invalid @enderror text-light" value="{{ old('name') }}" />
+                  <input type="text" name="name" autocomplete="off" autofocus id="form1Example13" class="form-control form-control-lg @error('name') is-invalid @enderror text-light" value="{{ old('name') }}" />
                   <label class="form-label text-muted" for="form1Example13">Name</label>
                 </div>
                 @error('name')
@@ -26,7 +26,7 @@
                 <!-- Email input -->
                 {{-- <p style="margin-bottom: -1px" class="text-primary"><span class="fa fa-info-circle"></span> Username tidak bisa di edit ketika sudah register </p> --}}
                 <div class="form-outline mb-4">
-                  <input type="text" name="username" id="form1Example13" class="form-control form-control-lg @error('username') is-invalid @enderror text-light" value="{{ old('username') }}" />
+                  <input type="text" name="username" autocomplete="off" id="form1Example13" class="form-control form-control-lg @error('username') is-invalid @enderror text-light" value="{{ old('username') }}" />
                   <label class="form-label text-muted" for="form1Example13">Username</label>
                 </div>
                 @error('username')

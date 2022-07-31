@@ -35,7 +35,7 @@
                 @csrf
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="username" name="username" autofocus id="form1Example13" class="form-control @error('username') is-invalid @enderror form-control-lg text-light" value="{{ old('username') }}" />
+                  <input type="username" name="username" autocomplete="off" autofocus id="form1Example13" class="form-control @error('username') is-invalid @enderror form-control-lg text-light" value="{{ old('username') }}" />
                   <label class="form-label text-muted" for="form1Example13">Username</label>
                 </div>
                 @error('username')

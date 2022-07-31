@@ -2,10 +2,10 @@
 
 @section('container')
 
-<h2 class="text-light text-center mt-4 mb-3 h4 lihatpesan px-3"><span class="fa fa-info-circle"></span> Pesan kamu akan ditampilkan di bawah sini</h2>
+@if($pesans->count())
 <div class="kartu">
     @foreach ($pesans as $pesan)
-    <div class="card mb-3" style="background-color: #111">
+    <div class="card mb-3 mt-5" style="background-color: #111">
         <div class="card-body">
             @if(auth()->user()->fitur === 0)
             <h6 class="text-light">??? <small>@<?php;?>???</small></h6>
@@ -41,6 +41,12 @@
         </div>
     </div>
     @endforeach
+@else
+<h2 class="text-light text-center mt-4 mb-3 h4 lihatpesan px-3"><span class="fa fa-info-circle"></span> Belum ada yg ngirim pesan</h2>
+<center>
+  <img width="300px" loop="infinite" src="{{ $baseurl }}/assets/img/anime4.gif" alt="">
+</center>
+@endif
 </div>
 
 {{ $pesans->links() }}
