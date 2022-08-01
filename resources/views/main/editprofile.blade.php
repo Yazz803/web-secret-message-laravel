@@ -2,16 +2,23 @@
 
 @section('container')
     <div class="edit bg-dark m-auto p-4 rounded">
+        @if(session()->has('success'))
+        <div class="alert alert-primary alert-dismissible fade show" id="hide" role="alert">
+        {!! session('success') !!}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <h2 class="text-light text-center">Edit Profile</h2>
         <hr class="bg-light">
-        <form action="/login" method="POST">
+        <form action="/updateuser/{{ auth()->user()->username }}" method="POST" enctype="multipart/form-data">
+            @method("put")
             @csrf
             {{-- <div style="max-height: 200px;overflow:hidden">
                 <img width="100%" class="mb-4" src="{{ $baseurl }}/assets/img/bg2.jpg" alt="">
             </div> --}}
-            <div class="img bg-position-center bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/assets/img/anime-sorry2.gif);">
+            <div class="img bg-position-center bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->BgPPuser }});">
                 <div class="user-logo">
-                    <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/assets/img/anime-sorry.gif);"></div>
+                    <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->PPuser }});"></div>
 	  				        <h3 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black">{{ auth()->user()->name }}</h3>
                     <h6 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black" class="text-light">@<?php;?>{{ auth()->user()->username }}</h6>
                 </div>
@@ -28,7 +35,13 @@
                 <p class="lead text-light fw-bold">Foto Profile </p>
                 <button class="bg-primary btn btn-primary" type="button" style="border-radius:10px 10px 0 0;" data-bs-toggle="modal" data-bs-target="#fotoprofile"><span  class="fa fa-eye text-light fs-4"></span></button>
             </div>
-            <input type="file" class="form-control mb-3" style="border-radius:0;border:0;"/>
+            <input type="file" name="PPuser" id="PPuser" class="form-control mb-3 style="border-radius:0;border:0;"/>
+            @error('PPuser')
+            <p class="text-danger ">
+                {!! $message !!}
+            </p>
+            @enderror
+
             <!-- Modal -->
             <div class="modal fade" id="fotoprofile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -53,7 +66,7 @@
                 <p class="lead text-light fw-bold">PP Background </p>
                 <button class="bg-primary btn btn-primary" style="border-radius:10px 10px 0 0;" type="button" data-bs-toggle="modal" data-bs-target="#fotobg"><span  class="fa fa-eye text-light fs-5"></span></button>
             </div>
-            <input type="file" class="form-control mb-3" style="border-radius:0;border:0;" />
+            <input type="file" name="BgPPuser" class="form-control mb-3" style="border-radius:0;border:0;" />
             <!-- Modal -->
             <div class="modal fade" id="fotobg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -79,19 +92,19 @@
             <p class="lead text-light fw-bold mb-0"><span class="fa fa-star text-warning"></span> Social Media</p>
             <p class="mb-2">Sosmed akan ditampilkan di halaman postingan kamu</p>
             <div class="form-outline mb-4">
-                <input type="text" name="instagram" autocomplete="off" autofocus id="form1Example13" class="form-control form-control-lg text-light" placeholder="example: https://instagram.com/yazz803" />
+                <input type="text" name="instagram" autocomplete="off" autofocus id="form1Example13" value="{{ auth()->user()->instagram }}" class="form-control form-control-lg text-light" placeholder="example: https://instagram.com/yazz803" />
                 <label class="form-label text-light pt-2" for="form1Example13"><i class="fab fa-instagram"></i> Link Instagram</label>
             </div>
             <div class="form-outline mb-4">
-                <input type="text" name="tiktok" autocomplete="off" autofocus id="form1Example13" class="form-control form-control-lg text-light" placeholder="paste linknya disini" />
+                <input type="text" name="tiktok" autocomplete="off" autofocus id="form1Example13"  value="{{ auth()->user()->tiktok }}" class="form-control form-control-lg text-light" placeholder="Wajib pake https://link-blablabla" />
                 <label class="form-label text-light pt-2" for="form1Example13"><i class="fab fa-tiktok"></i> Link TikTok</label>
             </div>
             <div class="form-outline mb-4">
-                <input type="text" name="facebook" autocomplete="off" autofocus id="form1Example13" class="form-control form-control-lg text-light" placeholder="paste linknya disini" />
+                <input type="text" name="facebook" autocomplete="off" autofocus id="form1Example13"  value="{{ auth()->user()->facebook }}" class="form-control form-control-lg text-light" placeholder="paste linknya disini" />
                 <label class="form-label text-light pt-2" for="form1Example13"><i class="fab fa-facebook"></i> Link Facebook</label>
             </div>
             <div class="form-outline mb-4">
-                <input type="text" name="discord" autocomplete="off" autofocus id="form1Example13" class="form-control form-control-lg text-light" placeholder="paste linknya disini" />
+                <input type="text" name="discord" autocomplete="off" autofocus id="form1Example13"  value="{{ auth()->user()->discord }}" class="form-control form-control-lg text-light" placeholder="paste linknya disini" />
                 <label class="form-label text-light pt-2" for="form1Example13"><i class="fab fa-discord"></i> Link Discord</label>
             </div>
             @endcan

@@ -33,9 +33,9 @@
 					<button type="button" id="sidebarCollapse" class="btn btn-primary fa fa-circle">
 	        </button>
         </div>
-	  		<div class="img bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/assets/img/anime-sorry2.gif);">
+	  		<div class="img bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->BgPPuser }});">
 	  			<div class="user-logo">
-	  				<div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/assets/img/anime-sorry.gif);"></div>
+	  				<div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->PPuser }});"></div>
 	  				<h3 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black">{{ auth()->user()->name }}</h3>
             <h6 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black">@<?php;?>{{ auth()->user()->username }}</h6>
 	  			</div>
@@ -81,7 +81,7 @@
               <a href="/lihatreply"><span class="fa fa-eye mr-3 notif"></span> Lihat Reply</a>
           </li>
           <li class="{{ Request::is('editp') ? 'active' : '' }} }}">
-              <a href="/editp"><span class="fa fa-edit mr-3 notif"></span> Edit Profile</a>
+              <a href="/editp/{{ auth()->user()->username }}"><span class="fa fa-edit mr-3 notif"></span> Edit Profile</a>
           </li>
           <li>
             <a href="/logout"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>

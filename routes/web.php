@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EditProfileController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\FiturController;
 use App\Http\Controllers\LihatPesanController;
 use App\Http\Controllers\LihatReplyController;
@@ -50,10 +51,12 @@ Route::delete('/lihatreply/{komentar:id}', [LihatReplyController::class, 'destro
 
 Route::post('/fitur/{user:id}', [FiturController::class, 'fitur'])->middleware('specialFeature');
 
-Route::get('/editp', [EditProfileController::class, 'index']);
+Route::get('/editp/{user:username}', [EditProfileController::class, 'index']);
 
 Route::get('/lihatuser', [AdminController::class, 'index'])->middleware('admin');
 
 Route::post('/specialFeature/{user:id}', [SpecialFeatureController::class, 'specialFeature'])->middleware('specialFeature');
 
 Route::post('/kpesan', [PesanController::class, 'kirimpesan']);
+
+Route::put('/updateuser/{user:username}', [FileController::class, 'updateProfile']);

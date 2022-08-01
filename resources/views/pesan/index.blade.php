@@ -49,9 +49,9 @@
 </head>
 <body>
     <div class="kotak mt-5 mb-5">
-        <div class="img bg-position-center bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/assets/img/anime-sorry2.gif);">
+        <div class="img bg-position-center bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/thumbnails/{{ $user->BgPPuser }});">
             <div class="user-logo">
-                <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/assets/img/anime-sorry.gif)"></div>
+                <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ $user->PPuser }})"></div>
                           <h3 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black">{{ $user->name }}</h3>
                 <h6 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black" class="text-light">@<?php;?>{{ $user->username }}</h6>
             </div>
@@ -104,12 +104,36 @@
 
         @endif
         <br>
-        <h4 class="text-light text-center">Dukung owner dengan saweria</h4>
+        {{-- <h4 class="text-light text-center">Dukung owner dengan saweria</h4>
         <center>
             <a href="https://saweria.co/yazz803" target="_blank">
                 <img width="50%" src="{{ $baseurl }}/assets/img/saweria.png" alt="">
             </a>
-        </center>
+        </center> --}}
+        <div class="tombol bg-primary p-2 m-3 img-thumbnail" style="position: fixed;bottom:0;right:0;border-radius:50%">
+            <button class="btn-primary" style="border: 0" type="button" data-bs-toggle="modal" data-bs-target="#fotobg"><span  class="fa fa-info text-light fs-4"></span></button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="fotobg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content bg-dark bg-opacity-75">
+                <div class="modal-header">
+                <h5 class="modal-title text-light" id="exampleModalLabel">Dukung Owner dengan Saweria</h5>
+                <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <a href="https://saweria.co/yazz803" target="_blank">
+                            <img class="img-fluid" src="{{ $baseurl }}/assets/img/saweria.png" alt="saweria">
+                        </a>
+                    </center>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
         {{-- untuk nanti pas di hosting --}}
         {{-- <a href="/home" class="btn btn-dark" style="position: absolute; bottom:-150px;left:0;right:0;border-radius:0;top:600px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-fill" viewBox="0 0 16 16"> --}}
             

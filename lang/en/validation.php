@@ -90,7 +90,7 @@ return [
         // 'string' => 'The :attribute must not be greater than :max characters.',
         'string' => ':Attribute tidak boleh lebih dari :max karakter',
     ],
-    'mimes' => 'The :attribute must be a file of type: :values.',
+    'mimes' => 'Gambar tipe/extension-nya harus :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
     'min' => [
         'array' => 'The :attribute must have at least :min items.',
