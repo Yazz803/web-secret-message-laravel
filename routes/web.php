@@ -42,16 +42,16 @@ Route::resource('/pesan', LihatPesanController::class)->middleware('auth');
 Route::get('/u/{user:username}', [PesanController::class, 'index'])->middleware('otherUserOnly');
 Route::post('/kirimpesan', [PesanController::class, 'store']);
 
-Route::get('/reply/{pesan:id}', [ReplyPesanController::class, 'index']);
+Route::get('/reply/{pesan:id}', [ReplyPesanController::class, 'index'])->middleware('auth');
 Route::post('/kirimreply', [ReplyPesanController::class, 'store']);
 
-Route::get('/lihatreply', [LihatReplyController::class, 'index']);
+Route::get('/lihatreply', [LihatReplyController::class, 'index'])->middleware('auth');
 // Hapus reply
 Route::delete('/lihatreply/{komentar:id}', [LihatReplyController::class, 'destroy']);
 
 Route::post('/fitur/{user:id}', [FiturController::class, 'fitur'])->middleware('specialFeature');
 
-Route::get('/editp/{user:username}', [EditProfileController::class, 'index']);
+Route::get('/editp/{user:username}', [EditProfileController::class, 'index'])->middleware('auth');
 
 Route::get('/lihatuser', [AdminController::class, 'index'])->middleware('admin');
 
@@ -59,4 +59,4 @@ Route::post('/specialFeature/{user:id}', [SpecialFeatureController::class, 'spec
 
 Route::post('/kpesan', [PesanController::class, 'kirimpesan']);
 
-Route::put('/updateuser/{user:username}', [FileController::class, 'updateProfile']);
+Route::put('/updateuser/{user:username}', [FileController::class, 'updateProfile'])->middleware('auth');
