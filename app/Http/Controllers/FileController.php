@@ -66,8 +66,10 @@ class FileController extends Controller
 
             // kalau user ngupload gambar baru, jalankan code ini, dan hapus gambar lama
             // ini error, fix nanti dirumah // solved
-            if($user->PPuser !== $input['imagename']){
-                File::delete('thumbnails/'.$user->PPuser);
+            if($user->PPuser === 'user.png'){
+                if($user->PPuser !== $input['imagename']){
+                    File::delete('thumbnails/'.$user->PPuser);
+                }
             }
             
             $validatedData['PPuser'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
