@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        // Mau apa hayooo
         // User::factory(4)->create();
 
         // Pesan::factory(30)->create();
