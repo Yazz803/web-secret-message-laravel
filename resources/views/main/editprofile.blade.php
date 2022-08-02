@@ -17,12 +17,19 @@
                 <img width="100%" class="mb-4" src="{{ $baseurl }}/assets/img/bg2.jpg" alt="">
             </div> --}}
             @php
-                $gambar = auth()->user()->PPuser;
-                $findurl = substr($gambar, strrpos($gambar, '.') + 1);
+                $pp = auth()->user()->PPuser;
+                $bgpp = auth()->user()->BgPPuser;
+                // tambahin buat BgPPUser
+                $PP = substr($pp, strrpos($pp, '.') + 1);
+                $BgPP = substr($bgpp, strrpos($bgpp, '.') + 1);
             @endphp
-            <div class="img bg-position-center bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->BgPPuser }});">
+            @if($BgPP === 'gif')
+                <div class="img bg-position-center bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/images/{{ auth()->user()->username.auth()->user()->BgPPuser }});">
+            @else
+                <div class="img bg-position-center bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/images/{{ auth()->user()->BgPPuser }});">
+            @endif
                 <div class="user-logo">
-                    @if($findurl === "gif")
+                    @if($PP === "gif")
                     <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->username.auth()->user()->PPuser }});"></div>
                     @else
                     <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->PPuser }});"></div>
@@ -43,7 +50,7 @@
                 <p class="lead text-light fw-bold">Foto Profile </p>
                 <button class="bg-primary btn btn-primary" type="button" style="border-radius:10px 10px 0 0;" data-bs-toggle="modal" data-bs-target="#fotoprofile"><span  class="fa fa-eye text-light fs-4"></span></button>
             </div>
-            <input type="file" name="PPuser" id="PPuser" class="form-control mb-3 style="border-radius:0;border:0;"/>
+            <input type="file" name="PPuser" id="PPuser" class="form-control mb-3" style="border-radius:0;border:0;" onchange="previewImage()"/>
             @error('PPuser')
             <p class="text-danger ">
                 {!! $message !!}
@@ -60,7 +67,11 @@
                     </div>
                     <div class="modal-body">
                         <center>
-                            <img class="img-fluid" src="{{ $baseurl }}/assets/img/anime-sorry.gif" alt="">
+                            @if(auth()->user()->PPuser == 'user.png')
+                            <img src="{{ $baseurl.'/thumbnails/user.png' }}" class="img-preview img-fluid">
+                          @else
+                            <img src="{{ $baseurl.'/thumbnails/'.auth()->user()->username.auth()->user()->PPuser }}" class="img-preview img-fluid">
+                          @endif
                         </center>
                     </div>
                     <div class="modal-footer">
@@ -120,4 +131,20 @@
             <button type="submit" class="btn btn-primary btn-lg btn-block m-auto">Update!</button>
           </form>
     </div>
+
+    <script>
+          function previewImage(){
+        const image = document.querySelector('#PPuser')
+        const imgPreview = document.querySelector('.img-preview')
+
+        imgPreview.style.display = 'block'
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0])
+
+        oFReader.onload = function(oFREvenet){
+        imgPreview.src = oFREvenet.target.result
+        }
+    }
+    </script>
 @endsection

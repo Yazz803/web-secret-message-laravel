@@ -38,6 +38,7 @@ class FileController extends Controller
             $rules = [
                 'name' => 'required|max:255',
                 'PPuser' => 'image|mimes:jpg,jpeg,png,svg,webp|max:5124',
+                'BgPPuser' => 'image|mimes:jpg,jpeg,png,svg,webp|max:5124',
             ];
         }
 
@@ -90,19 +91,59 @@ class FileController extends Controller
         }
 
         // kalau ada gambar
+        // if($request->file('BgPPuser')){
+        //     $image = $request->file('BgPPuser');
+        //     // ngambil nama dari gambar yg dikirim user, terus di tambahin username usernya supaya gk ketuker gambar user A dengan user B
+        //     $filenameWithExt = $request->file('BgPPuser')->getClientOriginalName();
+        //     $input['imagename'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
+            
+        //     // kalau gambarnya gif, jalankan code ini
+        //     if($image->extension() === 'gif'){
+        //         $filePath = public_path('/thumbnails');
+        //         $image->move($filePath, $input['imagename']);
+
+        //     }else{ // kalau gambarnya bukan gif, jalankan code ini
+        //         $filePath = public_path('/thumbnails');
+        //         $img = Image::make($image->path());
+        //         $img->resize(500, 500, function ($const) {
+        //             $const->aspectRatio();
+        //         })->save($filePath.'/'.$input['imagename']);   
+        //     }
+            
+
+        //     // kalau user ngupload gambar baru, jalankan code ini, dan hapus gambar lama
+        //     // ini error, fix nanti dirumah // solved
+        //     if($user->BgPPuser !== 'bguser.jpg' ){
+        //         if($user->BgPPuser !== $input['imagename']){
+        //             File::delete('thumbnails/'.$user->BgPPuser);
+        //         }
+        //     }
+            
+        //     if(auth()->user()->special_feature === 0){
+        //         $validatedData['BgPPuser'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
+        //     }else{
+        //         $validatedData['BgPPuser'] = $request->file('BgPPuser')->getClientOriginalName();
+        //     }
+        // }
+
         if($request->file('BgPPuser')){
             $image = $request->file('BgPPuser');
             // ngambil nama dari gambar yg dikirim user, terus di tambahin username usernya supaya gk ketuker gambar user A dengan user B
             $filenameWithExt = $request->file('BgPPuser')->getClientOriginalName();
-            $input['imagename'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
+
+            if($image->extension() !== 'gif'){
+                $input['imagename'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
+            }else{
+                $input['imagename'] = auth()->user()->username.$filenameWithExt;
+            }
             
             // kalau gambarnya gif, jalankan code ini
             if($image->extension() === 'gif'){
-                $filePath = public_path('/thumbnails');
+                $filePath = public_path('/images');
                 $image->move($filePath, $input['imagename']);
 
             }else{ // kalau gambarnya bukan gif, jalankan code ini
-                $filePath = public_path('/thumbnails');
+                $filePath = public_path('/images');
                 $img = Image::make($image->path());
                 $img->resize(500, 500, function ($const) {
                     $const->aspectRatio();
@@ -112,16 +153,21 @@ class FileController extends Controller
 
             // kalau user ngupload gambar baru, jalankan code ini, dan hapus gambar lama
             // ini error, fix nanti dirumah // solved
-            if($user->BgPPuser !== 'bguser.jpg' ){
+            if($user->BgPPuser !== 'bguser.jpg'){
                 if($user->BgPPuser !== $input['imagename']){
-                    File::delete('thumbnails/'.$user->BgPPuser);
+                    File::delete('images/'.$user->BgPPuser);
+                }
+                if($user->BgPPuser !== $user->username.$input['imagename']){
+                    File::delete('images/'.$user->username.$user->BgPPuser);
                 }
             }
             
-            if(auth()->user()->special_feature === 0){
-                $validatedData['BgPPuser'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
-            }else{
+            // $validatedData['BgPPuser'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
+            $gif = substr($filenameWithExt, strrpos($filenameWithExt, '.') + 1);
+            if($gif === "gif"){ // ini error // solved
                 $validatedData['BgPPuser'] = $request->file('BgPPuser')->getClientOriginalName();
+            }else{
+                $validatedData['BgPPuser'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
             }
         }
 

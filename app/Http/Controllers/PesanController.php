@@ -52,7 +52,7 @@ class PesanController extends Controller
 
         Pesan::create($validatedData);
 
-        return back()->with('success', 'Pesan berhasil dikirim!');
+        return back()->with('success', '<b>Pesan</b> berhasil dikirim!');
     }
 
     public function kirimpesan(Request $request){

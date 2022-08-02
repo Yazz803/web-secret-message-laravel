@@ -49,13 +49,20 @@
 </head>
 <body>
     <div class="kotak mt-5 mb-5">
-        <div class="img bg-position-center bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/thumbnails/{{ $user->BgPPuser }});">
+            @php
+                $pp = $user->PPuser;
+                $bgpp = $user->BgPPuser;
+                // tambahin buat BgPPUser
+                $PP = substr($pp, strrpos($pp, '.') + 1);
+                $BgPP = substr($bgpp, strrpos($bgpp, '.') + 1);
+            @endphp
+            @if($BgPP === 'gif')
+                <div class="img bg-position-center bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/images/{{ $user->username.$user->BgPPuser }});">
+            @else
+                <div class="img bg-position-center bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/images/{{ $user->BgPPuser }});">
+            @endif
             <div class="user-logo">
-                @php
-                    $gambar = $user->PPuser;
-                    $findurl = substr($gambar, strrpos($gambar, '.') + 1);
-                @endphp
-                @if($findurl === "gif")
+                @if($PP === "gif")
                 <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ $user->username.$user->PPuser }});"></div>
                 @else
                 <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ $user->PPuser }});"></div>

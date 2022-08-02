@@ -32,14 +32,21 @@
 				<div class="custom-menu">
 					<button type="button" id="sidebarCollapse" class="btn btn-primary fa fa-circle">
 	        </button>
-        </div>
-	  		<div class="img bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->BgPPuser }});">
+        </div>            
+        @php
+          $pp = auth()->user()->PPuser;
+          $bgpp = auth()->user()->BgPPuser;
+          // tambahin buat BgPPUser
+          $PP = substr($pp, strrpos($pp, '.') + 1);
+          $BgPP = substr($bgpp, strrpos($bgpp, '.') + 1);
+        @endphp
+          @if($BgPP === 'gif')
+              <div class="img bg-position-center bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/images/{{ auth()->user()->username.auth()->user()->BgPPuser }});">
+          @else
+              <div class="img bg-position-center bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/images/{{ auth()->user()->BgPPuser }});">
+          @endif
 	  			<div class="user-logo">
-            @php
-              $gambar = auth()->user()->PPuser;
-              $findurl = substr($gambar, strrpos($gambar, '.') + 1);
-            @endphp
-            @if($findurl === "gif")
+            @if($PP === "gif")
             <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->username.auth()->user()->PPuser }});"></div>
             @else
             <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->PPuser }});"></div>
