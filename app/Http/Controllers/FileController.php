@@ -90,42 +90,6 @@ class FileController extends Controller
             }
         }
 
-        // kalau ada gambar
-        // if($request->file('BgPPuser')){
-        //     $image = $request->file('BgPPuser');
-        //     // ngambil nama dari gambar yg dikirim user, terus di tambahin username usernya supaya gk ketuker gambar user A dengan user B
-        //     $filenameWithExt = $request->file('BgPPuser')->getClientOriginalName();
-        //     $input['imagename'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
-            
-        //     // kalau gambarnya gif, jalankan code ini
-        //     if($image->extension() === 'gif'){
-        //         $filePath = public_path('/thumbnails');
-        //         $image->move($filePath, $input['imagename']);
-
-        //     }else{ // kalau gambarnya bukan gif, jalankan code ini
-        //         $filePath = public_path('/thumbnails');
-        //         $img = Image::make($image->path());
-        //         $img->resize(500, 500, function ($const) {
-        //             $const->aspectRatio();
-        //         })->save($filePath.'/'.$input['imagename']);   
-        //     }
-            
-
-        //     // kalau user ngupload gambar baru, jalankan code ini, dan hapus gambar lama
-        //     // ini error, fix nanti dirumah // solved
-        //     if($user->BgPPuser !== 'bguser.jpg' ){
-        //         if($user->BgPPuser !== $input['imagename']){
-        //             File::delete('thumbnails/'.$user->BgPPuser);
-        //         }
-        //     }
-            
-        //     if(auth()->user()->special_feature === 0){
-        //         $validatedData['BgPPuser'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
-        //     }else{
-        //         $validatedData['BgPPuser'] = $request->file('BgPPuser')->getClientOriginalName();
-        //     }
-        // }
-
         if($request->file('BgPPuser')){
             $image = $request->file('BgPPuser');
             // ngambil nama dari gambar yg dikirim user, terus di tambahin username usernya supaya gk ketuker gambar user A dengan user B

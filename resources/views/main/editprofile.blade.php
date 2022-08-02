@@ -68,10 +68,12 @@
                     <div class="modal-body">
                         <center>
                             @if(auth()->user()->PPuser == 'user.png')
-                            <img src="{{ $baseurl.'/thumbnails/user.png' }}" class="img-preview img-fluid">
-                          @else
-                            <img src="{{ $baseurl.'/thumbnails/'.auth()->user()->username.auth()->user()->PPuser }}" class="img-preview img-fluid">
-                          @endif
+                                <img src="{{ $baseurl.'/thumbnails/user.png' }}" class="img-preview img-fluid">
+                            @elseif($PP === 'gif')
+                                <img src="{{ $baseurl.'/thumbnails/'.auth()->user()->username.auth()->user()->PPuser }}" class="img-preview img-fluid">
+                            @else
+                                <img src="{{ $baseurl.'/thumbnails/'.auth()->user()->PPuser }}" class="img-preview img-fluid">
+                            @endif
                         </center>
                     </div>
                     <div class="modal-footer">
@@ -85,7 +87,12 @@
                 <p class="lead text-light fw-bold">PP Background </p>
                 <button class="bg-primary btn btn-primary" style="border-radius:10px 10px 0 0;" type="button" data-bs-toggle="modal" data-bs-target="#fotobg"><span  class="fa fa-eye text-light fs-5"></span></button>
             </div>
-            <input type="file" name="BgPPuser" class="form-control mb-3" style="border-radius:0;border:0;" />
+            <input type="file" name="BgPPuser" id="BgPPuser" class="form-control mb-3" style="border-radius:0;border:0;" onchange="previewImageBgPP()" />
+            @error('BgPPuser')
+                <p class="text-danger">
+                    {{ $message }}
+                </p>
+            @enderror
             <!-- Modal -->
             <div class="modal fade" id="fotobg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -96,7 +103,13 @@
                     </div>
                     <div class="modal-body">
                         <center>
-                            <img class="img-fluid" src="{{ $baseurl }}/assets/img/anime-sorry2.gif" alt="">
+                            @if(auth()->user()->BgPPuser == 'bguser.jpg')
+                                <img src="{{ $baseurl.'/images/bguser.jpg' }}" class="img-previewBg img-fluid">
+                            @elseif($BgPP === 'gif')
+                                <img src="{{ $baseurl.'/images/'.auth()->user()->username.auth()->user()->BgPPuser }}" class="img-previewBg img-fluid">
+                            @else
+                                <img src="{{ $baseurl.'/images/'.auth()->user()->BgPPuser }}" class="img-previewBg img-fluid">
+                            @endif
                         </center>
                     </div>
                     <div class="modal-footer">
@@ -134,17 +147,30 @@
 
     <script>
           function previewImage(){
-        const image = document.querySelector('#PPuser')
-        const imgPreview = document.querySelector('.img-preview')
+            const image = document.querySelector('#PPuser')
+            const imgPreview = document.querySelector('.img-preview')
 
-        imgPreview.style.display = 'block'
+            imgPreview.style.display = 'block'
 
-        const oFReader = new FileReader();
-        oFReader.readAsDataURL(image.files[0])
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0])
 
-        oFReader.onload = function(oFREvenet){
-        imgPreview.src = oFREvenet.target.result
+            oFReader.onload = function(oFREvenet){
+            imgPreview.src = oFREvenet.target.result
+            }
         }
-    }
+          function previewImageBgPP(){
+            const image = document.querySelector('#BgPPuser')
+            const imgPreview = document.querySelector('.img-previewBg')
+
+            imgPreview.style.display = 'block'
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0])
+
+            oFReader.onload = function(oFREvenet){
+            imgPreview.src = oFREvenet.target.result
+            }
+        }
     </script>
 @endsection
