@@ -31,8 +31,8 @@ class FileController extends Controller
                 'discord' => 'required|max:255',
                 'instagram' => 'required|max:255',
                 'tiktok' => 'required|max:255',
-                'PPuser' => 'image|mimes:jpg,jpeg,png,svg,webp|max:5124',
-                'BgPPuser' => 'image|mimes:jpg,jpeg,png,svg,webp|max:5124',
+                'PPuser' => 'image|mimes:jpg,jpeg,png,svg,webp,gif|max:5124',
+                'BgPPuser' => 'image|mimes:jpg,jpeg,png,svg,webp,gif|max:5124',
             ];
         }else {
             $rules = [
@@ -48,7 +48,12 @@ class FileController extends Controller
             $image = $request->file('PPuser');
             // ngambil nama dari gambar yg dikirim user, terus di tambahin username usernya supaya gk ketuker gambar user A dengan user B
             $filenameWithExt = $request->file('PPuser')->getClientOriginalName();
-            $input['imagename'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
+
+            if($image->extension() !== 'gif'){
+                $input['imagename'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
+            }else{
+                $input['imagename'] = auth()->user()->username.$filenameWithExt;
+            }
             
             // kalau gambarnya gif, jalankan code ini
             if($image->extension() === 'gif'){
@@ -66,13 +71,22 @@ class FileController extends Controller
 
             // kalau user ngupload gambar baru, jalankan code ini, dan hapus gambar lama
             // ini error, fix nanti dirumah // solved
-            if($user->PPuser === 'user.png'){
+            if($user->PPuser !== 'user.png'){
                 if($user->PPuser !== $input['imagename']){
                     File::delete('thumbnails/'.$user->PPuser);
                 }
+                if($user->PPuser !== $user->username.$input['imagename']){
+                    File::delete('thumbnails/'.$user->username.$user->PPuser);
+                }
             }
             
-            $validatedData['PPuser'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
+            // $validatedData['PPuser'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
+            $gif = substr($filenameWithExt, strrpos($filenameWithExt, '.') + 1);
+            if($gif === "gif"){ // ini error // solved
+                $validatedData['PPuser'] = $request->file('PPuser')->getClientOriginalName();
+            }else{
+                $validatedData['PPuser'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
+            }
         }
 
         // kalau ada gambar
@@ -104,7 +118,11 @@ class FileController extends Controller
                 }
             }
             
-            $validatedData['BgPPuser'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
+            if(auth()->user()->special_feature === 0){
+                $validatedData['BgPPuser'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
+            }else{
+                $validatedData['BgPPuser'] = $request->file('BgPPuser')->getClientOriginalName();
+            }
         }
 
         User::where('username', $user->username)->update($validatedData);

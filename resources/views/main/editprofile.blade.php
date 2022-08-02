@@ -16,9 +16,17 @@
             {{-- <div style="max-height: 200px;overflow:hidden">
                 <img width="100%" class="mb-4" src="{{ $baseurl }}/assets/img/bg2.jpg" alt="">
             </div> --}}
+            @php
+                $gambar = auth()->user()->PPuser;
+                $findurl = substr($gambar, strrpos($gambar, '.') + 1);
+            @endphp
             <div class="img bg-position-center bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->BgPPuser }});">
                 <div class="user-logo">
+                    @if($findurl === "gif")
+                    <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->username.auth()->user()->PPuser }});"></div>
+                    @else
                     <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->PPuser }});"></div>
+                    @endif
 	  				        <h3 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black">{{ auth()->user()->name }}</h3>
                     <h6 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black" class="text-light">@<?php;?>{{ auth()->user()->username }}</h6>
                 </div>

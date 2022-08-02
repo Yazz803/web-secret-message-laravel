@@ -35,7 +35,15 @@
         </div>
 	  		<div class="img bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->BgPPuser }});">
 	  			<div class="user-logo">
-	  				<div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->PPuser }});"></div>
+            @php
+              $gambar = auth()->user()->PPuser;
+              $findurl = substr($gambar, strrpos($gambar, '.') + 1);
+            @endphp
+            @if($findurl === "gif")
+            <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->username.auth()->user()->PPuser }});"></div>
+            @else
+            <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ auth()->user()->PPuser }});"></div>
+            @endif
 	  				<h3 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black">{{ auth()->user()->name }}</h3>
             <h6 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black">@<?php;?>{{ auth()->user()->username }}</h6>
 	  			</div>
@@ -53,7 +61,7 @@
           <li>
             @if (auth()->user()->fitur === 1)
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-light">
-              <span> SPECIAL FEATURE</span>
+              <span class="fa fa-star text-warning"> SPECIAL FEATURE</span>
               <form action="/fitur/{{ auth()->user()->id }}" method="post">
                 @csrf
                 <input type="hidden" name="fitur" value="{{ auth()->user()->fitur - 1 }}">

@@ -51,7 +51,15 @@
     <div class="kotak mt-5 mb-5">
         <div class="img bg-position-center bg-wrap text-center py-4" style="background-image: url({{ $baseurl }}/thumbnails/{{ $user->BgPPuser }});">
             <div class="user-logo">
-                <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ $user->PPuser }})"></div>
+                @php
+                    $gambar = $user->PPuser;
+                    $findurl = substr($gambar, strrpos($gambar, '.') + 1);
+                @endphp
+                @if($findurl === "gif")
+                <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ $user->username.$user->PPuser }});"></div>
+                @else
+                <div class="img img-thumbnail" style="background-image: url({{ $baseurl }}/thumbnails/{{ $user->PPuser }});"></div>
+                @endif
                           <h3 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black">{{ $user->name }}</h3>
                 <h6 style="text-shadow: 0 0 2px black,0 0 2px black,0 0 2px black,0 0 2px black" class="text-light">@<?php;?>{{ $user->username }}</h6>
             </div>
