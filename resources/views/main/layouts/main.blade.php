@@ -64,6 +64,35 @@
             <a href="/lihatuser"><span class="fa fa-user mr-3"></span> Lihat User</a>
           </li>
           @endcan
+          <li>
+            @if(auth()->user()->fitur === 0 && auth()->user()->special_feature === 0)
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-light">
+              <span class="fa fa-star text-warning"> SPECIAL FEATURE</span>
+              <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#fotobg">OFF</button>
+            @endif
+          </li>
+            <!-- Modal -->
+            <div class="modal fade" id="fotobg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+              <div class="modal-content bg-dark bg-opacity-75">
+                  <div class="modal-header">
+                  <h5 class="modal-title text-light" id="exampleModalLabel"><span class="fa fa-info-circle" style="border-radius: 50%"></span> Fitur Special Tidak Aktif</h5>
+                  <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <center>
+                      <img src="{{ $baseurl }}/assets/img/anime4.gif" alt="gambar" class="img-fluid w-50">
+                    </center>
+                    <p class="lead">Kamu harus membeli fitur special dulu...</p>
+                    <p class="lead">Silahkan cek link berikut ini untuk infonya</p>
+                    <a href="#"><button class="btn btn-success fw-bold">Click here</button></a>
+                  </div>
+                  <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                  </div>
+              </div>
+              </div>
+          </div>
           @can('specialFeature')
           <li>
             @if (auth()->user()->fitur === 1)
