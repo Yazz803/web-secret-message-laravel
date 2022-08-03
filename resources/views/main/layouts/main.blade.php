@@ -84,8 +84,7 @@
                       <img src="{{ $baseurl }}/assets/img/anime4.gif" alt="gambar" class="img-fluid w-50">
                     </center>
                     <p class="lead">Kamu harus membeli fitur special dulu...</p>
-                    <p class="lead">Silahkan cek link berikut ini untuk infonya</p>
-                    <a href="#"><button class="btn btn-success fw-bold">Click here</button></a>
+                    <a href="/about#specialf"><button class="btn btn-success fw-bold">Click here</button></a>
                   </div>
                   <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -126,6 +125,9 @@
           </li>
           <li class="{{ Request::is('editp') ? 'active' : '' }} }}">
               <a href="/editp/{{ auth()->user()->username }}"><span class="fa fa-edit mr-3 notif"></span> Edit Profile</a>
+          </li>
+          <li class="{{ Request::is('about') ? 'active' : '' }} }}">
+              <a href="/about"><span class="far fa-question-circle mr-3 notif"></span> About</a>
           </li>
           <li>
             <a href="/logout"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>

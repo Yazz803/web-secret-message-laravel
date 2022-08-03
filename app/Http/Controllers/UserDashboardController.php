@@ -17,4 +17,11 @@ class UserDashboardController extends Controller
             'jmlReply' => Komentar::where('user_id', auth()->user()->id)->get()
         ]);
     }
+
+    public function about(){
+        return view('main.about',[
+            'title' => 'About',
+            'baseurl' => Controller::BASEURL
+        ]);
+    }
 }

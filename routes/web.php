@@ -36,6 +36,7 @@ Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/home', [UserDashboardController::class, 'index'])->middleware('auth');
+Route::get('/about', [UserDashboardController::class, 'about'])->middleware('auth');
 
 Route::resource('/pesan', LihatPesanController::class)->middleware('auth');
 
