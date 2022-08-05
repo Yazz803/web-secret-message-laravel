@@ -68,11 +68,11 @@
             @if(auth()->user()->fitur === 0 && auth()->user()->special_feature === 0)
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-light">
               <span class="fa fa-star text-warning"> SPECIAL FEATURE</span>
-              <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#fotobg">OFF</button>
+              <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#belifitur">OFF</button>
             @endif
           </li>
             <!-- Modal -->
-            <div class="modal fade" id="fotobg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="belifitur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
               <div class="modal-content bg-dark bg-opacity-75">
                   <div class="modal-header">

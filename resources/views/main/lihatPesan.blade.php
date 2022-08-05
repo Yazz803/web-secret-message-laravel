@@ -5,7 +5,7 @@
 @if($pesans->count())
 <div class="kartu">
     @foreach ($pesans as $pesan)
-    <div class="card mb-3 mt-5" style="background-color: #111">
+    <div class="card mb-1 mt-3" style="background-color: #111">
         <div class="card-body">
             @if(auth()->user()->fitur === 0)
             <h6 class="text-light">??? <small>@<?php;?>???</small></h6>

@@ -35,7 +35,7 @@
     </style>
     <title>Web Secret Message | {{ $title }}</title>
 </head>
-<body class="bg-dark" oncontextmenu="return false">
+<body class="bg-dark">
     <div class="container">
         @yield('container')
     </div>

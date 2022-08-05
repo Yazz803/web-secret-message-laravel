@@ -68,6 +68,6 @@ class PesanController extends Controller
                 return $cek;
             }
         }
-        return redirect('/home#kirimpesan')->with('failed', 'Username <b>'.$request->kirimpesan.'</b> tidak ditemukan!');
+        return redirect('/home#kirimpesan')->with('failed', $request->kirimpesan);
     }
 }

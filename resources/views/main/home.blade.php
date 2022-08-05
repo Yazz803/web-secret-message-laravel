@@ -40,7 +40,7 @@
         <div class="card-body bg-light rounded" id="kirimpesan">
           @if (session()->has('failed'))
         <div class="alert alert-danger alert-dismissible fade show" id="hide" role="alert">
-            {!! session('failed') !!}
+            <p>Username <strong>{{  session('failed')  }}</strong> tidak ditemukan!</p>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
