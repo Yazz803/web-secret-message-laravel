@@ -24,19 +24,6 @@
           <input type="hidden" name="name" value="{{ auth()->user()->name }}">
           <input type="hidden" name="username" value="{{ auth()->user()->username }}">
           <input type="hidden" name="pesan" value="{{ $pesan->pesan }}">
-          {{-- menghilangkan pesan success setelah beberapa detik --}}
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-          <script>
-              setTimeout(function() {
-              $('#hide').fadeOut('slow');
-              }, 3000); // <-- time in milliseconds
-          </script>
-          @if(session()->has('success'))
-          <div class="alert alert-primary alert-dismissible mx-3 fade show" id="hide" role="alert">
-          {!! session('success') !!}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-          @endif
           <center>
             <div class="areakomen mx-4">
               <textarea name="komentar" id="" rows="2" autofocus placeholder="Masukan komentar" class="form-control px-2" style="padding-bottom: 100px" required></textarea>
@@ -50,6 +37,8 @@
         </form>
     </div>
 </div>
+
+@include('sweetalert::alert')
 
 
 @endsection

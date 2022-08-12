@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class RegisterController extends Controller
 {
@@ -22,8 +24,10 @@ class RegisterController extends Controller
 
         $validatedData['password'] = bcrypt($validatedData['password']);
 
+        Alert::toast('Berhasil Registrasi!', 'success');
         User::create($validatedData);
 
-        return redirect('/')->with('success', '<b>Registrasi Berhasil!</b> Silahkan Login');
+        return redirect('/');
+        // return redirect('/')->with('success', '<b>Registrasi Berhasil!</b> Silahkan Login');
     }
 }

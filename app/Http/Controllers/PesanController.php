@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Pesan;
+use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PesanController extends Controller
 {
@@ -50,9 +51,11 @@ class PesanController extends Controller
             'username' => 'required',
         ]);
 
+        Alert::toast('Pesan kamu berhasil terkirim!', 'success');
+
         Pesan::create($validatedData);
 
-        return back()->with('success', '<b>Pesan</b> berhasil dikirim!');
+        return back();
     }
 
     public function kirimpesan(Request $request){
@@ -68,6 +71,8 @@ class PesanController extends Controller
                 return $cek;
             }
         }
-        return redirect('/home#kirimpesan')->with('failed', $request->kirimpesan);
+        Alert::toast('Username tidak ditemukan', 'warning');
+        // return redirect('/home#kirimpesan')->with('failed', $request->kirimpesan);
+        return back();
     }
 }

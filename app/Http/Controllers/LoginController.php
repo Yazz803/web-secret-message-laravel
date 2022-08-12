@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -23,11 +24,14 @@ class LoginController extends Controller
 
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
-
+            
+            Alert::toast('Login Berhasil!', 'success');       
             return redirect()->intended('/home');
         }
+        
+        Alert::toast('Login Gagal!', 'error');
 
-        return back()->with('loginError', 'Login Gagal!');
+        return back();
     }
 
     public function logout(Request $request)

@@ -74,19 +74,6 @@
         <br>
           </svg>
         <p class="text-light text-center"><span class="fa fa-star text-warning"></span> Kirim Pesan tidak dikenal</p>
-        {{-- menghilangkan pesan success setelah beberapa detik --}}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script>
-            setTimeout(function() {
-            $('#hide').fadeOut('slow');
-            }, 3000); // <-- time in milliseconds
-        </script>
-        @if(session()->has('success'))
-        <div class="alert alert-primary alert-dismissible fade show" id="hide" role="alert">
-        {!! session('success') !!}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
         <form action="/kirimpesan" method="post">
         @csrf
             <input type="hidden" value="{{ mt_rand(10000,99999) }}" name="id">
@@ -157,6 +144,8 @@
             <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
           </svg> My Dashboard</a>
     </div>
+
+    @include('sweetalert::alert')
 </body>
 
 {{-- bootstrap JS --}}

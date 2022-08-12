@@ -28,13 +28,13 @@
               <form action="/fitur/{{ auth()->user()->id }}" method="POST">
                 @csrf
                 <input type="hidden" name="fitur" value="{{ auth()->user()->fitur + 1 }}">
-                <button class="btn btn-dark">Feature : OFF</button>
+                <button class="btn btn-dark">Show Name : OFF</button>
               </form>
           @else
               <form action="/fitur/{{ auth()->user()->id }}" method="POST">
                 @csrf
                 <input type="hidden" name="fitur" value="{{ auth()->user()->fitur - 1 }}">
-                <button class="btn btn-success">Feature : ON</button>
+                <button class="btn btn-success">Show Name : ON</button>
               </form>
           @endif
           @endcan

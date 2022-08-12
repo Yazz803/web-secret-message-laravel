@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class FileController extends Controller
 {
@@ -135,12 +136,16 @@ class FileController extends Controller
             }
         }
 
+        
+        Alert::toast('Berhasil di ubah', 'success');
+
         User::where('username', $user->username)->update($validatedData);
 
         // return back()
         //     ->with('success','<b>Berhasil</b> Update Data!')
         //     ->with('fileName',$input['imagename']);
 
-        return redirect('/editp/'.$user->username)->with('success','<b>Berhasil</b> Update Data!');
+        // return redirect('/editp/'.$user->username)->with('success','<b>Berhasil</b> Update Data!');
+        return back();
     }
 }

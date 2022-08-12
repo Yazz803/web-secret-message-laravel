@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Pesan;
 use Illuminate\Http\Request;
-use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LihatPesanController extends Controller
 {
@@ -85,6 +86,7 @@ class LihatPesanController extends Controller
      */
     public function destroy(Pesan $Pesan)
     {
+        Alert::toast('Pesan dihapus', 'error');
         Pesan::destroy($Pesan->id);
         return redirect('/pesan');
     }

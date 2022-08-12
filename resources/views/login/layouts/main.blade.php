@@ -39,7 +39,8 @@
     <div class="container">
         @yield('container')
     </div>
-</body>
+    @include('sweetalert::alert')
+  </body>
 
 {{-- MDBootstrap5 --}}
 <script type="text/javascript" src="/assets/js/mdb.min.js"></script>
@@ -61,6 +62,6 @@
   if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
      return false;
   }
-} --}}
-</script>
+}
+</script> --}}
 </html>

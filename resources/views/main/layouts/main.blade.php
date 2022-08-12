@@ -94,25 +94,30 @@
           </div>
           @can('specialFeature')
           <li>
-            @if (auth()->user()->fitur === 1)
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-light">
               <span class="fa fa-star text-warning"> SPECIAL FEATURE</span>
-              <form action="/fitur/{{ auth()->user()->id }}" method="post">
-                @csrf
-                <input type="hidden" name="fitur" value="{{ auth()->user()->fitur - 1 }}">
-                <button class="btn btn-success">ON</button>
-              </form>
-            @else
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span class="fa fa-star text-warning"> SPECIAL FEATURE</span>
-              <form action="/fitur/{{ auth()->user()->id }}" method="post">
-                @csrf
-                <input type="hidden" name="fitur" value="{{ auth()->user()->fitur + 1 }}">
-                <button class="btn btn-dark">OFF</button>
-              </form>
-            </h6>
-            @endif
+              <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#fituron">ON</button>
           </li>
+            <!-- Modal -->
+            <div class="modal fade" id="fituron" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+              <div class="modal-content bg-dark bg-opacity-75">
+                  <div class="modal-header">
+                  <h5 class="modal-title text-light" id="exampleModalLabel"><span class="fa fa-info-circle" style="border-radius: 50%"></span> Fitur Spesial Aktif</h5>
+                  <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <center>
+                      <img src="{{ $baseurl }}/assets/img/anime4.gif" alt="gambar" class="img-fluid w-50">
+                    </center>
+                    <p class="lead">Terima kasih sudah beli Fitur Special-nya</p>
+                  </div>
+                  <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                  </div>
+              </div>
+              </div>
+          </div>
           @endcan
           <li class="{{ Request::is('home') ? 'active' : '' }}">
             <a href="/home"><span class="fa fa-home mr-3"></span> Home</a>
@@ -140,6 +145,7 @@
       <div id="content" class="p-4 p-md-5 pt-5">
         @yield('container')
       </div>
+      @include('sweetalert::alert')
 
     <script src="{{ $baseurl }}/assets/mainHome/js/jquery.min.js"></script>
     <script src="{{ $baseurl }}/assets/mainHome/js/popper.js"></script>

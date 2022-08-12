@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Komentar;
 use App\Models\Pesan;
+use App\Models\Komentar;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ReplyPesanController extends Controller
 {
@@ -26,8 +27,11 @@ class ReplyPesanController extends Controller
             'pesan' => 'required'
         ]);
 
+        Alert::toast('Komentar kamu berhasil terkirim!', 'success');
+
         Komentar::create($validatedData);
 
-        return redirect('/reply/'.$request->pesan_id)->with('success', '<b>Reply/Komentar</b> berhasil dikirim!');
+        // return redirect('/reply/'.$request->pesan_id)->with('success', '<b>Reply/Komentar</b> berhasil dikirim!');
+        return back();
     }
 }

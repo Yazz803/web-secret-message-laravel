@@ -11,18 +11,6 @@
           </a>
         </div>
         <div class="card-body">
-          <script>
-            function copyText(){
-              document.getElementById('text').select()
-              document.execCommand('copy')
-            }
-          </script>
-        @if(session()->has('janganMasuk'))
-        <div class="alert alert-danger alert-dismissible fade show" id="hide" role="alert">
-        {!! session('janganMasuk') !!}
-        <button type="button" class="btn-close" style="border: 0;border-radius:50%;position: absolute;top:-10px;right:-10px;background-color:rgba(17, 17, 17, 0)" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
           <h5 class="card-title text-center text-light">Salin link postingan kamu dan sebarkan di berbagai macam Media Sosial</h5>
           <input type="text" class="btn-outline-dark bg-light w-100 text-center py-2" id="text" style="font-weight: bold;" value="http://127.0.0.1:8000/u/{{ auth()->user()->username }}" readonly>
           <center>

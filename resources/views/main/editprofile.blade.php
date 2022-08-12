@@ -2,12 +2,6 @@
 
 @section('container')
     <div class="edit bg-dark m-auto p-4 rounded">
-        @if(session()->has('success'))
-        <div class="alert alert-primary alert-dismissible fade show" id="hide" role="alert">
-        {!! session('success') !!}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
         <h2 class="text-light text-center">Edit Profile</h2>
         <hr class="bg-light">
         <form action="/updateuser/{{ auth()->user()->username }}" method="POST" enctype="multipart/form-data">

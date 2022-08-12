@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Komentar;
-use App\Models\Pesan;
 use App\Models\User;
+use App\Models\Pesan;
+use App\Models\Komentar;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LihatReplyController extends Controller
 {
@@ -18,6 +19,7 @@ class LihatReplyController extends Controller
     }
 
     public function destroy(Komentar $komentar){
+        Alert::toast('Komentar dihapus', 'error');
         Komentar::destroy($komentar->id);
 
         return redirect('/lihatreply');
