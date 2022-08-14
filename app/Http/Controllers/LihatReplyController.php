@@ -14,7 +14,8 @@ class LihatReplyController extends Controller
         return view('main.lihatreply',[
             'title' => 'Reply',
             'baseurl' => Controller::BASEURL,
-            'komentars' => Komentar::where('user_id', auth()->user()->id)->latest()->paginate(10),
+            'komentars' => Komentar::where('user_id', auth()->user()->id)->latest()->paginate(6),
+            'jmlkomentar' => Komentar::where('user_id', auth()->user()->id)->get()
         ]);
     }
 

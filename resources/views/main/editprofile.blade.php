@@ -118,19 +118,19 @@
             <p class="lead text-light fw-bold mb-0"><span class="fa fa-star text-warning"></span> Social Media</p>
             <p class="mb-2">Sosmed akan ditampilkan di halaman postingan kamu</p>
             <div class="form-outline mb-4">
-                <input type="text" name="instagram" autocomplete="off" autofocus id="form1Example13" value="{{ auth()->user()->instagram }}" class="form-control form-control-lg text-light" placeholder="example: https://instagram.com/yazz803" />
+                <input type="text" name="instagram" autocomplete="off" autofocus id="form1Example13" value="{{ auth()->user()->instagram }}" class="form-control form-control-lg text-light" placeholder="example: https://instagram.com/yazz803" required/>
                 <label class="form-label text-light pt-2" for="form1Example13"><i class="fab fa-instagram"></i> Link Instagram</label>
             </div>
             <div class="form-outline mb-4">
-                <input type="text" name="tiktok" autocomplete="off" autofocus id="form1Example13"  value="{{ auth()->user()->tiktok }}" class="form-control form-control-lg text-light" placeholder="Wajib pake https://link-blablabla" />
+                <input type="text" name="tiktok" autocomplete="off" autofocus id="form1Example13"  value="{{ auth()->user()->tiktok }}" class="form-control form-control-lg text-light" placeholder="Wajib pake https://link-blablabla" required/>
                 <label class="form-label text-light pt-2" for="form1Example13"><i class="fab fa-tiktok"></i> Link TikTok</label>
             </div>
             <div class="form-outline mb-4">
-                <input type="text" name="facebook" autocomplete="off" autofocus id="form1Example13"  value="{{ auth()->user()->facebook }}" class="form-control form-control-lg text-light" placeholder="paste linknya disini" />
+                <input type="text" name="facebook" autocomplete="off" autofocus id="form1Example13"  value="{{ auth()->user()->facebook }}" class="form-control form-control-lg text-light" placeholder="paste linknya disini" required/>
                 <label class="form-label text-light pt-2" for="form1Example13"><i class="fab fa-facebook"></i> Link Facebook</label>
             </div>
             <div class="form-outline mb-4">
-                <input type="text" name="discord" autocomplete="off" autofocus id="form1Example13"  value="{{ auth()->user()->discord }}" class="form-control form-control-lg text-light" placeholder="paste linknya disini" />
+                <input type="text" name="discord" autocomplete="off" autofocus id="form1Example13"  value="{{ auth()->user()->discord }}" class="form-control form-control-lg text-light" placeholder="paste linknya disini" required/>
                 <label class="form-label text-light pt-2" for="form1Example13"><i class="fab fa-discord"></i> Link Discord</label>
             </div>
             @endcan
@@ -138,6 +138,8 @@
             <button type="submit" class="btn btn-primary btn-lg btn-block m-auto">Update!</button>
           </form>
     </div>
+
+    <br><br>
 
     <script>
           function previewImage(){

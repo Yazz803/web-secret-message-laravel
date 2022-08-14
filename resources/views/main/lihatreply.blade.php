@@ -2,6 +2,14 @@
 
 @section('container')
 
+@if(count($jmlkomentar) > 6)
+<div class="paginate py-3 mt-4 justify-content-center rounded" style="background-color: rgba(255, 255, 255, 0.7);">
+  {{ $komentars->links() }}
+</div>
+@else
+
+@endif
+
 {{-- <h2 class="text-light text-center mt-4 mb-3 h4 lihatpesan"><span class="fa fa-info-circle"></span> Pesan kamu akan ditampilkan di bawah sini</h2> --}}
 <div class="kartu mt-5">
   @if ($komentars->count())      
@@ -28,7 +36,12 @@
   @endif
 </div>
 
-{{ $komentars->links() }}
+@if(count($jmlkomentar) > 6)
+<div class="paginate py-3 mt-4 justify-content-center rounded" style="background-color: rgba(255, 255, 255, 0.7);">
+  {{ $komentars->links() }}
+</div>
+@else
 
+@endif
 
 @endsection

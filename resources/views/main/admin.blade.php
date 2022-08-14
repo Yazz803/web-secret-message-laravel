@@ -20,7 +20,7 @@
             <th class="fs-5 text-center">Name</th>
             <th class="fs-5 text-center">Username</th>
             <th class="fs-5 text-center">Special Feature</th>
-            <th class="fs-5 text-center">Feature</th>
+            <th class="fs-5 text-center">Banned User</th>
         </tr>
         @foreach ($users as $user)
         <tr>
@@ -42,19 +42,12 @@
                 @endif
             </td>
             <td class="text-center fs-6">
-                @if ($user->fitur === 0)
-                    <form action="/fitur/{{ $user->id }}" method="POST">
-                      @csrf
-                      <input type="hidden" name="fitur" value="{{ $user->fitur + 1 }}">
-                      <button class="btn btn-danger">OFF</button>
-                    </form>
-                @else
-                    <form action="/fitur/{{ $user->id }}" method="POST">
-                      @csrf
-                      <input type="hidden" name="fitur" value="{{ $user->fitur - 1 }}">
-                      <button class="btn btn-success">ON</button>
-                    </form>
-                @endif
+                {{-- <form action="/delete/{{ $user->id }}" method="POST">
+                    @method('delete')
+                    @csrf
+                    <button class="btn btn-secondary" onclick="return hapus()">Yes</button>
+                </form> --}}
+                <a href="#" class="btn btn-secondary" onclick="return hapus()">Banned?</a>
             </td>
         </tr>
         @endforeach
@@ -63,5 +56,34 @@
         {{ $users->links() }}
     </div>
 </div>
+
+<script>
+    // swal hapus
+    function hapus() {
+          Swal.fire({
+          title: 'Hapus User?',
+          imageUrl: '/assets/img/anime-crying2.gif',
+          imageWidth: 250,
+          imageHeight: 200,
+          backgroundOpacity: .5,
+          background: '#333',
+          position: 'left-start',
+          color: '#FFF',
+          // width: 300,
+          // icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Iya',
+          cancelButtonText: 'Enggak'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            @foreach($users as $user)
+            window.location.href= '#'
+            @endforeach
+          }
+        })
+    }
+  </script>
 
 @endsection

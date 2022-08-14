@@ -16,6 +16,37 @@
           <center>
               <button onclick="copyText()" class="btn btn-primary mt-4 fw-bold">Salin Link</button>
           </center>
+          <script>
+            function copyText() {
+              /* Get the text field */
+              var copyText = document.getElementById("text");
+
+              /* Select the text field */
+              copyText.select();
+              copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+              /* Copy the text inside the text field */
+              navigator.clipboard.writeText(copyText.value);
+
+              /* Alert the copied text */
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+
+              Toast.fire({
+                icon: 'success',
+                title: 'Berhasil Salin Link!'
+              })
+            }
+          </script>
         </div>
     </div>
     <div class="cardn">

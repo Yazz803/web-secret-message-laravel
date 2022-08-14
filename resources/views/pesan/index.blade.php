@@ -20,7 +20,7 @@
                 rgba(0, 0, 0, 0.5),
                 rgba(0, 0, 0, 0.5)
             ),
-            url(../assets/img/bg2.jpg);
+            url(../assets/img/bg4.jpg);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -33,7 +33,7 @@
             z-index: -1;
         }
         .kotak {
-            background-color: rgba(0, 0, 0, 0.459);
+            background-color: rgba(37, 37, 37, 0.459);
             margin: auto;
             width: 40%;
             padding: 20px;
@@ -72,7 +72,51 @@
             </div>
         </div>
         <br>
-          </svg>
+        @php
+            // mengambil string di url setelah /
+            $url = url()->current();
+            $username = substr($url, strrpos($url, '/') + 1);
+        @endphp
+    @if(auth()->user()->username === $username)
+        <div class="card-body">
+            <h5 class="card-title text-center text-light">Salin link postingan kamu dan sebarkan di berbagai macam Media Sosial</h5>
+            <input type="text" class="btn-outline-dark bg-light w-100 text-center py-2" id="text" style="font-weight: bold;" value="http://127.0.0.1:8000/u/{{ auth()->user()->username }}" readonly>
+            <center>
+                <button onclick="copyText()" class="btn btn-primary mt-4 fw-bold">Salin Link</button>
+            </center>
+            <script>
+            function copyText() {
+                /* Get the text field */
+                var copyText = document.getElementById("text");
+
+                /* Select the text field */
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+                /* Copy the text inside the text field */
+                navigator.clipboard.writeText(copyText.value);
+
+                /* Alert the copied text */
+                const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+
+                Toast.fire({
+                icon: 'success',
+                title: 'Berhasil Salin Link!'
+                })
+            }
+            </script>
+        </div>        
+    @else
         <p class="text-light text-center"><span class="fa fa-star text-warning"></span> Kirim Pesan tidak dikenal</p>
         <form action="/kirimpesan" method="post">
         @csrf
@@ -82,11 +126,12 @@
             <input type="hidden" value="{{ auth()->user()->name }}" name="name">
             <input type="hidden" value="{{ auth()->user()->username }}" name="username">
             <center>
-                <textarea name="pesan" id="pesan" class="form-control px-2" style="padding-bottom: 100px" placeholder="{{ $kataRandom[mt_rand(0,22)]. " | Kirim Pesan apapun ke $user->name" }}" required></textarea><br>
+                <textarea name="pesan" id="pesan" class="form-control px-2" style="padding-bottom: 100px" placeholder="{{ $kataRandom[mt_rand(0,22)]. " | Kirim Pesan apapun ke $user->name" }}" autofocus required></textarea><br>
                 <button type="submit" class="btn btn-success fw-bold mb-4">Kirim Pesan</button>
             </center>
         </form> 
-        
+    @endif
+    
         @if($user->special_feature === 1)
         <center>
             <span class="fa fa-star text-warning mb-2"> Sosmed {{ $user->name }}</span>
@@ -139,10 +184,11 @@
         {{-- untuk nanti pas di hosting --}}
         {{-- <a href="/home" class="btn btn-dark" style="position: absolute; bottom:-150px;left:0;right:0;border-radius:0;top:600px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-fill" viewBox="0 0 16 16"> --}}
             
-            <a href="/home" class="btn btn-dark" style="position: absolute; top: 0;left:0;right:0;border-radius:0;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
-
-            <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
-          </svg> My Dashboard</a>
+            <a href="/home" class="btn btn-dark" style="position: absolute; top: 0;left:0;right:0;border-radius:0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                    <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                </svg> My Dashboard
+            </a>
     </div>
 
     @include('sweetalert::alert')
@@ -157,4 +203,5 @@
 <script src="{{ $baseurl }}/assets/mainHome/js/bootstrap.min.js"></script>
 <script src="{{ $baseurl }}/assets/mainHome/js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

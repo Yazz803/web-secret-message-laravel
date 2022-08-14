@@ -31,12 +31,12 @@
 
     <div class="about bg-dark text-light py-4 px-3 rounded fw-normal mt-4" id="specialf">
         <h1 class="text-light"><span class="fas fa-key text-primary"></span> Special Feature</h1>
-        <p class="fw-normal">Untuk bisa mendapatkan Special Feature ini, kalian hanya perlu membayar 10k saja, dan itu sudah <strong>Permanen.</strong></p>
+        <p class="fw-normal">Untuk bisa mendapatkan Special Feature ini, kalian hanya perlu membayar 15k saja, dan itu sudah <strong>Permanen.</strong></p>
         <p class="mb-0">Cara pembeliannya (Pakai Dana) :</p>
         <ul>
             <li>Masuk ke aplikasi <strong>Dana</strong></li>
             <li>Pilih "kirim" dan masukan nomor <strong>0812-9021-5655</strong></li>
-            <li>Masukan jumlah kirim sebesar <strong>Rp 10.000</strong></li>
+            <li>Masukan jumlah kirim sebesar <strong>Rp 15.000</strong></li>
             <li>Tulis catatan "Beli Special Feature untuk 'UsernameKamu' "</li>
             <li>Tekan "Lanjut" dan konfirmasi pembayaran</li>
             <li class="text-warning">Disarankan untuk SS transaksi/struk pembayarannya</li>

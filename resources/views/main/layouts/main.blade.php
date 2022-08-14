@@ -81,9 +81,9 @@
                   </div>
                   <div class="modal-body">
                     <center>
-                      <img src="{{ $baseurl }}/assets/img/anime4.gif" alt="gambar" class="img-fluid w-50">
+                      <img src="{{ $baseurl }}/assets/img/anime4.gif" alt="gambar" class="img-fluid w-75">
                     </center>
-                    <p class="lead">Kamu harus membeli fitur special dulu...</p>
+                    <p class="lead text-center">Kamu harus membeli fitur special dulu...</p>
                     <a href="/about#specialf"><button class="btn btn-success fw-bold">Click here</button></a>
                   </div>
                   <div class="modal-footer">
@@ -108,9 +108,9 @@
                   </div>
                   <div class="modal-body">
                     <center>
-                      <img src="{{ $baseurl }}/assets/img/anime4.gif" alt="gambar" class="img-fluid w-50">
+                      <img src="{{ $baseurl }}/assets/img/anime-happy.gif" alt="gambar" class="img-fluid w-75">
                     </center>
-                    <p class="lead">Terima kasih sudah beli Fitur Special-nya</p>
+                    <p class="lead text-center">Terima kasih sudah beli Fitur Special-nya</p>
                   </div>
                   <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -135,17 +135,23 @@
               <a href="/about"><span class="far fa-question-circle mr-3 notif"></span> About</a>
           </li>
           <li>
-            <a href="/logout"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
+              <a href="#" onclick="return Logout()" class="logout-tablet-laptop text-danger"><span class="fa fa-sign-out mr-3"></span> Logout</a>
           </li>
         </ul>
-
     	</nav>
+
+      {{-- logout buat mobile --}}
+      <div class="logout-mobile">
+        <span class="fa fa-sign-out fs-3" onclick="return Logout()"></span>
+      </div>
+      {{-- end logout buat mobile --}}
 
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
         @yield('container')
       </div>
       @include('sweetalert::alert')
+
 
     <script src="{{ $baseurl }}/assets/mainHome/js/jquery.min.js"></script>
     <script src="{{ $baseurl }}/assets/mainHome/js/popper.js"></script>
@@ -154,6 +160,33 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     {{-- MDBootstrap5 --}}
     <script type="text/javascript" src="/assets/js/mdb.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      // swal logout
+      function Logout() {
+          Swal.fire({
+          title: 'Mau Logout?',
+          imageUrl: '/assets/img/anime-crying2.gif',
+          imageWidth: 250,
+          imageHeight: 200,
+          backgroundOpacity: .5,
+          background: '#333',
+          position: 'left-start',
+          color: '#FFF',
+          // width: 300,
+          // icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Iya',
+          cancelButtonText: 'Enggak'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href= '/logout'
+          }
+        })
+      }
+    </script>
     {{-- protect my website from inspect elements --}}
     {{-- <script>
         document.onkeydown = function(e) {

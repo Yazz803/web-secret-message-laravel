@@ -19,7 +19,8 @@ class LihatPesanController extends Controller
         return view('main.lihatPesan',[
             'baseurl' => Controller::BASEURL,
             'title' => 'Pesan',
-            'pesans' => Pesan::where('user_id', auth()->user()->id)->latest()->paginate(10)
+            'pesans' => Pesan::where('user_id', auth()->user()->id)->latest()->paginate(10),
+            'jmlpesan' => Pesan::where('user_id', auth()->user()->id)->get()
         ]);
     }
 

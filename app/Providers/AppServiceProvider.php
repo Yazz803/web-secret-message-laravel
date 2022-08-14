@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Paginator::useBootstrapFive();
+        Paginator::useBootstrapFour();
 
         Gate::define('specialFeature', function(User $user){
             return $user->special_feature;

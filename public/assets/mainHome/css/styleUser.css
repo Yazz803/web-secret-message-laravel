@@ -5,7 +5,7 @@ body::before{
         rgba(0, 0, 0, 0.5),
         rgba(0, 0, 0, 0.5)
     ),
-    url(/assets/img/bg2.jpg);
+    url(/assets/img/bg4.jpg);
     transform: scale(1.2);
     background-size: cover;
     background-position: center;
@@ -46,6 +46,11 @@ div.edit{
 div.about p, div.about ul li, div.about span.list {
     font-size: 20px;
 }
+div.logout-mobile {
+    display: none;
+}
+
+
 @media (max-width: 700px){
     div.kartu{
         width: 100%;
@@ -70,5 +75,21 @@ div.about p, div.about ul li, div.about span.list {
     
     div.about p, div.about ul li, div.about span.list {
         font-size: 14px;
+    }
+    .logout-tablet-laptop {
+        display: none !important;
+    }
+    .logout-mobile {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin: 30px;
+        color: red;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        padding: 5px 10px;
+        border: 2px solid rgba(0, 0, 0, 0.233);
+        z-index: 1;
+        display: block !important;
     }
 }
