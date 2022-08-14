@@ -5,9 +5,6 @@
 - Create new database for this project and setup your DB in file ```.env```
 - Run ```php artisan key:generate```
 - Run ```php artisan migrate```
-- Run ```composer require intervention/image``` this is for resizing image
-- Run ```composer require realrashid/sweetalert``` Install SweetAlert
-- Run ```php artisan sweetalert:publish```
 
 ## Let's Start!
 - Run ```php artisan serve```
