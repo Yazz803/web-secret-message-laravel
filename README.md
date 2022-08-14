@@ -1,4 +1,19 @@
-<h1 align="center">Masih dalam Development!</h1>
+## Installation
+- Clone Repo ```git clone https://github.com/Yazz803/web-secret-message-laravel```
+- Run ```composer install``` (if composer install doesn't work, try ```composer update```)
+- Run ```cp .env.example .env```
+- Create new database for this project and setup your DB in file ```.env```
+- Run ```php artisan key:generate```
+- Run ```php artisan migrate```
+
+## Let's Start!
+- Run ```php artisan serve```
+- Go to your ```localhost```
+- Firstly we have to ```Register``` and ```Login```
+- After you're Registered, if you want to be ```ADMIN``` you have to change value from field ```must_admin``` and ```special_feature``` from 0 to 1 (in table users)
+- Field ```fitur``` is not needed, so i'll delete that later
+- Create new account and try send anonymous message from your new account to your admin account
+- Uumm... next is up to you 😁 have fun!
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
