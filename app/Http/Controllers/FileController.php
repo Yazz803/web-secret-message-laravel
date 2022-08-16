@@ -49,7 +49,7 @@ class FileController extends Controller
         if($request->file('PPuser')){
             $image = $request->file('PPuser');
             // ngambil nama dari gambar yg dikirim user, terus di tambahin username usernya supaya gk ketuker gambar user A dengan user B
-            $filenameWithExt = $request->file('PPuser')->getClientOriginalName();
+            $filenameWithExt = str_replace(' ', '', $request->file('PPuser')->getClientOriginalName());
 
             if($image->extension() !== 'gif'){
                 $input['imagename'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
@@ -85,16 +85,16 @@ class FileController extends Controller
             // $validatedData['PPuser'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
             $gif = substr($filenameWithExt, strrpos($filenameWithExt, '.') + 1);
             if($gif === "gif"){ // ini error // solved
-                $validatedData['PPuser'] = $request->file('PPuser')->getClientOriginalName();
+                $validatedData['PPuser'] = str_replace(' ', '', $request->file('PPuser')->getClientOriginalName());
             }else{
-                $validatedData['PPuser'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
+                $validatedData['PPuser'] = str_replace(' ', '', pathinfo($filenameWithExt, PATHINFO_FILENAME)).auth()->user()->username.'.'.$image->extension();
             }
         }
 
         if($request->file('BgPPuser')){
             $image = $request->file('BgPPuser');
             // ngambil nama dari gambar yg dikirim user, terus di tambahin username usernya supaya gk ketuker gambar user A dengan user B
-            $filenameWithExt = $request->file('BgPPuser')->getClientOriginalName();
+            $filenameWithExt = str_replace(' ', '', $request->file('BgPPuser')->getClientOriginalName());
 
             if($image->extension() !== 'gif'){
                 $input['imagename'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
@@ -130,9 +130,9 @@ class FileController extends Controller
             // $validatedData['BgPPuser'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
             $gif = substr($filenameWithExt, strrpos($filenameWithExt, '.') + 1);
             if($gif === "gif"){ // ini error // solved
-                $validatedData['BgPPuser'] = $request->file('BgPPuser')->getClientOriginalName();
+                $validatedData['BgPPuser'] = str_replace(' ', '', $request->file('BgPPuser')->getClientOriginalName());
             }else{
-                $validatedData['BgPPuser'] = pathinfo($filenameWithExt, PATHINFO_FILENAME).auth()->user()->username.'.'.$image->extension();
+                $validatedData['BgPPuser'] = str_replace(' ','', pathinfo($filenameWithExt, PATHINFO_FILENAME)).auth()->user()->username.'.'.$image->extension();
             }
         }
 
