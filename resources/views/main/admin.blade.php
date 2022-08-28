@@ -3,7 +3,7 @@
 @section('container')
 
 
-<p class="bg-dark px-5 py-2 bg-opacity-75 rounded text-light w-100 fs-4 text-center"><span class="fa fa-circle text-danger"></span> Lihat Semua User ( {{ $allusers->count() }} )</p>
+<p class="bg-dark px-5 py-2 bg-opacity-75 rounded text-light w-100 fs-4 text-center"><span class="fa fa-circle text-danger"></span> Lihat Semua User ( {{ $allusers->count() - 1 }} )</p>
 
 <form action="/lihatuser">
     <center>
@@ -20,9 +20,10 @@
             <th class="fs-5 text-center">Name</th>
             <th class="fs-5 text-center">Username</th>
             <th class="fs-5 text-center">Special Feature</th>
-            <th class="fs-5 text-center">Banned User</th>
+            <th class="fs-5 text-center">Delete User</th>
         </tr>
         @foreach ($users as $user)
+        @if($user->username !== auth()->user()->username) {{-- menghilangkan data admin dari tampilan client --}}
         <tr>
             <td class="text-center fs-6" style="width:20%">{{ $user->name }}</td>
             <td class="text-center fs-6">{{ $user->username }}</td>
@@ -42,15 +43,18 @@
                 @endif
             </td>
             <td class="text-center fs-6">
-                {{-- <form action="/delete/{{ $user->id }}" method="POST">
-                    @method('delete')
-                    @csrf
-                    <button class="btn btn-secondary" onclick="return hapus()">Yes</button>
-                </form> --}}
-                <a href="#" class="btn btn-secondary" onclick="return hapus()">Banned?</a>
+                @php
+                    $hapusUser = $user->id;
+                @endphp
+                <a href="#" class="btn btn-secondary" onclick="return hapus()">Delete?</a>
             </td>
         </tr>
+        @endif
         @endforeach
+        {{-- kalau gk ada data user, maka code php dibawah in yg akan dijalankan --}}
+        @php
+            $hapusUser = false;
+        @endphp
     </table>
     <div class="m-4">
         {{ $users->links() }}
@@ -78,9 +82,7 @@
           cancelButtonText: 'Enggak'
         }).then((result) => {
           if (result.isConfirmed) {
-            @foreach($users as $user)
-            window.location.href= '#'
-            @endforeach
+            window.location.href= '/delete/{{ $hapusUser }}'
           }
         })
     }

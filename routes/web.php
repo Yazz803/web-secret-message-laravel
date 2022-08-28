@@ -32,7 +32,7 @@ Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('g
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout']);
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/home', [UserDashboardController::class, 'index'])->middleware('auth');
@@ -55,7 +55,7 @@ Route::post('/fitur/{user:id}', [FiturController::class, 'fitur'])->middleware('
 Route::get('/editp/{user:username}', [EditProfileController::class, 'index'])->middleware('auth');
 
 Route::get('/lihatuser', [AdminController::class, 'index'])->middleware('admin');
-// Route::get('/delete/{user:id}', [AdminController::class, 'hapus'])->middleware('admin');
+Route::get('/delete/{user:id}', [AdminController::class, 'hapus'])->middleware('admin');
 
 Route::post('/specialFeature/{user:id}', [SpecialFeatureController::class, 'specialFeature'])->middleware('specialFeature');
 

@@ -50,6 +50,11 @@
                 @error('password')
                 <p style="color:red;margin-top:-20px;margin-bottom:20px;">{{ $message }}</p>
                 @enderror
+
+                {{-- Remember me --}}
+                <div class="form-outline mb-4">
+                  <input type="hidden" name="remember" value="1" required>
+                </div>
       
                 
                 <!-- Submit button -->

@@ -38,10 +38,12 @@
               <textarea name="komentar" id="" rows="2" autofocus placeholder="Masukan komentar" class="form-control px-2" style="padding-bottom: 100px" required></textarea>
             </div>
             <br>
-            <div class="d-flex justify-content-between mx-3 flex-wrap">
+            <div class="d-flex justify-content-around mx-3 flex-wrap">
               <a href="/pesan" class="btn btn-primary mb-4">Lihat Pesan</a>
               <button class="btn btn-light mb-4"><b> Kirim</b></button>
+              @if(auth()->user()->special_feature === 1)
               <p class="btn btn-success mb-4" id="show">SHOW/HIDE</p>
+              @endif
             </div>
           </center>
         </form>

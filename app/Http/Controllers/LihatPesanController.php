@@ -20,7 +20,9 @@ class LihatPesanController extends Controller
             'baseurl' => Controller::BASEURL,
             'title' => 'Pesan',
             'pesans' => Pesan::where('user_id', auth()->user()->id)->latest()->paginate(10),
-            'jmlpesan' => Pesan::where('user_id', auth()->user()->id)->get()
+            'jmlpesan' => Pesan::where('user_id', auth()->user()->id)->get(),
+            'nomor_pesan' => (request()->input('page', 1) - 1) * 10,
+            'nomor_pesan1' => (request()->input('page', 1) - 1) * 10
         ]);
     }
 

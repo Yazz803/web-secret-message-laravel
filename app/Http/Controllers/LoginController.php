@@ -22,7 +22,7 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        if(Auth::attempt($credentials)){
+        if(Auth::attempt($credentials, $request->get('remember'))){
             $request->session()->regenerate();
             
             Alert::toast('Login Berhasil!', 'success');       

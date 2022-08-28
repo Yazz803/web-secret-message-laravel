@@ -25,8 +25,8 @@
                     });
                 });
               </script>
-              <h6 class="text-light username-name{{ $pesan->id }}" style="display: block;">??? <small>@???</small></h6>
-              <h6 class="text-light username-name{{ $pesan->id }}" style="display: none;">{{ $pesan->name }} <small><a href="http://127.0.0.1:8000/u/{{ $pesan->username }}" target="_blank">@<?php  ;?>{{ $pesan->username }}</a></small></h6>
+              <h6 class="text-light username-name{{ $pesan->id }}" style="display: block;"><span style="color: rgb(177, 189, 255);">{{ ++$nomor_pesan }}. </span>??? <small>@???</small></h6>
+              <h6 class="text-light username-name{{ $pesan->id }}" style="display: none;"><span style="color: rgb(177, 189, 255);">{{ ++$nomor_pesan1 }}. </span> {{ $pesan->name }} <small><a href="http://127.0.0.1:8000/u/{{ $pesan->username }}" target="_blank">@<?php  ;?>{{ $pesan->username }}</a></small></h6>
             @else
               <h6 class="text-light">??? <small>@???</small></h6>
             @endif
