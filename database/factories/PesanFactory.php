@@ -18,8 +18,8 @@ class PesanFactory extends Factory
     {
         return [
             'pesan' => $this->faker->sentence(mt_rand(3,6)),
-            'user_id' => mt_rand(1,4),
-            'reply_id' => mt_rand(1,4),
+            'user_id' => mt_rand(1,5),
+            'reply_id' => mt_rand(1,5),
             'username' => $this->faker->sentence(1),
             'name' => $this->faker->name()
         ];

@@ -22,7 +22,7 @@
             @csrf
             <button style="border-radius: 50%; border:0; position: absolute;top:-10px;right:-10px;color:white; background-color:rgba(17, 17, 17, 0)"><span class="fa fa-remove bg-danger p-2" style="border-radius:50%"></span></button>
           </form>
-          <p class="text-light"><span class="fa fa-info-circle"></span> Pesan kamu yang dikirim ke <strong>{{ $komentar->name }} <small><a href="http://127.0.0.1:8000/u/{{ $komentar->username }}">@<?php  ;?>{{ $komentar->username }}</a></small> </strong><br><br><strong>Pesan : </strong>{{ $komentar->pesan }}</p>
+          <p class="text-light"><span class="fa fa-info-circle"></span> Pesan kamu yang dikirim ke <strong>{{ $komentar->name }} <small><a href="{{ $baseurl }}/u/{{ $komentar->username }}">@<?php  ;?>{{ $komentar->username }}</a></small> </strong><br><br><strong>Pesan : </strong>{{ $komentar->pesan }}</p>
           <hr class="bg-light">
           {{-- <h6 class="text-light">{{ $komentar->name }} <small><a href="http://127.0.0.1:8000/u/{{ $komentar->username }}">@<?php  ;?>{{ $komentar->username }}</a></small></h6> --}}
           <p class="text-light"><strong>Reply : </strong>{{ $komentar->komentar }}</p>

@@ -15,7 +15,7 @@
               });
             </script>
             <h6 class="text-light username-name" style="display: block;">??? <small>@???</small></h6>
-            <h6 class="text-light username-name" style="display: none;">{{ $pesan->name }} <small><a href="http://127.0.0.1:8000/u/{{ $pesan->username }}" target="_blank">@<?php  ;?>{{ $pesan->username }}</a></small></h6>
+            <h6 class="text-light username-name" style="display: none;">{{ $pesan->name }} <small><a href="{{ $baseurl }}/u/{{ $pesan->username }}" target="_blank">@<?php  ;?>{{ $pesan->username }}</a></small></h6>
           @else
             <h6 class="text-light">??? <small>@???</small></h6>
           @endif

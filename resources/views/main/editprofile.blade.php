@@ -64,7 +64,7 @@
                             @if(auth()->user()->PPuser == 'user.png')
                                 <img src="{{ $baseurl.'/thumbnails/user.png' }}" class="img-preview img-fluid">
                             @elseif($PP === 'gif')
-                                <img src="{{ $baseurl.'/thumbnails/'.auth()->user()->username.auth()->user()->PPuser }}" class="img-preview img-fluid">
+                                <img src="{{ $baseurl.'/thumbnails/'.auth()->user()->username.auth()->user()->PPuser }}" width="100%" class="img-preview img-fluid">
                             @else
                                 <img src="{{ $baseurl.'/thumbnails/'.auth()->user()->PPuser }}" class="img-preview img-fluid">
                             @endif
@@ -100,9 +100,9 @@
                             @if(auth()->user()->BgPPuser == 'bguser.jpg')
                                 <img src="{{ $baseurl.'/images/bguser.jpg' }}" class="img-previewBg img-fluid">
                             @elseif($BgPP === 'gif')
-                                <img src="{{ $baseurl.'/images/'.auth()->user()->username.auth()->user()->BgPPuser }}" class="img-previewBg img-fluid">
+                                <img src="{{ $baseurl.'/images/'.auth()->user()->username.auth()->user()->BgPPuser }}" width="100%" class="img-previewBg img-fluid">
                             @else
-                                <img src="{{ $baseurl.'/images/'.auth()->user()->BgPPuser }}" class="img-previewBg img-fluid">
+                                <img src="{{ $baseurl.'/images/'.auth()->user()->BgPPuser }}" width="100%" class="img-previewBg img-fluid">
                             @endif
                         </center>
                     </div>
@@ -118,25 +118,31 @@
             <p class="lead text-light fw-bold mb-0"><span class="fa fa-star text-warning"></span> Social Media</p>
             <p class="mb-2">Sosmed akan ditampilkan di halaman postingan kamu</p>
             <div class="form-outline mb-4">
-                <input type="text" name="instagram" autocomplete="off" autofocus id="form1Example13" value="{{ auth()->user()->instagram }}" class="form-control form-control-lg text-light" placeholder="example: https://instagram.com/yazz803" required/>
+                <input type="url" name="instagram" autocomplete="off" autofocus id="form1Example13" value="{{ auth()->user()->instagram }}" class="form-control form-control-lg text-light" placeholder="example: https://instagram.com/yazz803" required/>
                 <label class="form-label text-light pt-2" for="form1Example13"><i class="fab fa-instagram"></i> Link Instagram</label>
             </div>
             <div class="form-outline mb-4">
-                <input type="text" name="tiktok" autocomplete="off" autofocus id="form1Example13"  value="{{ auth()->user()->tiktok }}" class="form-control form-control-lg text-light" placeholder="Wajib pake https://link-blablabla" required/>
+                <input type="url" name="tiktok" autocomplete="off" autofocus id="form1Example13"  value="{{ auth()->user()->tiktok }}" class="form-control form-control-lg text-light" placeholder="Wajib pake https://link-blablabla" required/>
                 <label class="form-label text-light pt-2" for="form1Example13"><i class="fab fa-tiktok"></i> Link TikTok</label>
             </div>
             <div class="form-outline mb-4">
-                <input type="text" name="facebook" autocomplete="off" autofocus id="form1Example13"  value="{{ auth()->user()->facebook }}" class="form-control form-control-lg text-light" placeholder="paste linknya disini" required/>
+                <input type="url" name="facebook" autocomplete="off" autofocus id="form1Example13"  value="{{ auth()->user()->facebook }}" class="form-control form-control-lg text-light" placeholder="paste linknya disini" required/>
                 <label class="form-label text-light pt-2" for="form1Example13"><i class="fab fa-facebook"></i> Link Facebook</label>
             </div>
             <div class="form-outline mb-4">
-                <input type="text" name="discord" autocomplete="off" autofocus id="form1Example13"  value="{{ auth()->user()->discord }}" class="form-control form-control-lg text-light" placeholder="paste linknya disini" required/>
+                <input type="url" name="discord" autocomplete="off" autofocus id="form1Example13"  value="{{ auth()->user()->discord }}" class="form-control form-control-lg text-light" placeholder="paste linknya disini" required/>
                 <label class="form-label text-light pt-2" for="form1Example13"><i class="fab fa-discord"></i> Link Discord</label>
             </div>
             @endcan
+            {{-- Delete All Message --}}
+            <div class="deleteAllMessage d-flex justify-content-between mb-3" style="align-items: center;">
+                <p class="text-danger mb-0"><span class="fa fa-warning text-danger"></span> Hapus Semua Pesan!</p>
+                <span class="btn btn-danger" onclick="return deleteAllMessage()">Delete!</span>
+            </div>
+            {{-- End Delete All Message --}}
             <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-lg btn-block m-auto">Update!</button>
-          </form>
+            <button type="submit" id="updateProfile" class="btn btn-primary btn-lg btn-block m-auto">Update!</button>
+        </form>
     </div>
 
     <br><br>
@@ -167,6 +173,31 @@
             oFReader.onload = function(oFREvenet){
             imgPreview.src = oFREvenet.target.result
             }
+        }
+
+        function deleteAllMessage(){
+            // swal logout
+            Swal.fire({
+            title: 'Hapus Semua Pesan?',
+            imageUrl: '/assets/img/anime-crying2.gif',
+            imageWidth: 250,
+            imageHeight: 200,
+            backgroundOpacity: .5,
+            background: '#333',
+            position: 'left-start',
+            color: '#FFF',
+            // width: 300,
+            // icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Iya',
+            cancelButtonText: 'Enggak'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href= '/deleteallmessage'
+            }
+            })
         }
     </script>
 @endsection

@@ -12,7 +12,7 @@
         </div>
         <div class="card-body">
           <h5 class="card-title text-center text-light">Salin link postingan kamu dan sebarkan di berbagai macam Media Sosial</h5>
-          <input type="text" class="btn-outline-dark bg-light w-100 text-center py-2" id="text" style="font-weight: bold;" value="http://127.0.0.1:8000/u/{{ auth()->user()->username }}" readonly>
+          <input type="text" class="btn-outline-dark bg-light w-100 text-center py-2" id="text" style="font-weight: bold;" value="{{ $baseurl }}/u/{{ auth()->user()->username }}" readonly>
           <center>
               <button onclick="copyText()" class="btn btn-primary mt-4 fw-bold">Salin Link</button>
           </center>

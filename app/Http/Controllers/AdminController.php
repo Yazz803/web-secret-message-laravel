@@ -11,8 +11,9 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
-    public function index(){
-        return view('main.admin',[
+    public function index()
+    {
+        return view('main.admin', [
             'baseurl' => Controller::BASEURL,
             'title' => 'ADMIN',
             'users' => User::latest()->filter(request(['adminSearch']))->paginate(6),
@@ -20,20 +21,25 @@ class AdminController extends Controller
         ]);
     }
 
-    public function hapus(User $user){
+    public function hapus(User $user)
+    {
         Alert::toast('User berhasil dihapus!', 'success');
         Pesan::where('user_id', $user->id)->delete();
         Komentar::where('user_id', $user->id)->delete();
-        if(User::where('id', $user->id)){
+        if (User::where('id', $user->id)) {
             // hapus PP user
-            File::delete('thumbnails/'.$user->PPuser); // hapus gambar !gif
-            File::delete('thumbnails/'.$user->username.$user->PPuser); // hapus gambar gif
-            
+            if ($user->PPuser !== 'user.png') {
+                File::delete('thumbnails/' . $user->PPuser); // hapus gambar !gif
+                File::delete('thumbnails/' . $user->username . $user->PPuser); // hapus gambar gif
+            }
+
             // hapus BG PP user
-            File::delete('images/'.$user->BgPPuser); // hapus gambar !gif
-            File::delete('images/'.$user->username.$user->BgPPuser); // hapus gambar gif
+            if ($user->BgPPuser !== 'bguser.jpg') {
+                File::delete('images/' . $user->BgPPuser); // hapus gambar !gif
+                File::delete('images/' . $user->username . $user->BgPPuser); // hapus gambar gif
+            }
         }
-        User::destroy($user->id);
+        User::where('id', $user->id)->delete();
         return back();
     }
 }

@@ -21,8 +21,17 @@ class DatabaseSeeder extends Seeder
 
         // Mau apa hayooo
         // User::factory(4)->create();
+        $yazid = [
+            'name' => "Muhammad Yazid Akbar",
+            'username' => "yazz803",
+            'password' => bcrypt('password'),
+            'special_feature' => 1,
+            'must_admin' => 1
+        ];
+        User::create($yazid);
+        User::factory(5)->create();
 
-        // Pesan::factory(30)->create();
+        Pesan::factory(60)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

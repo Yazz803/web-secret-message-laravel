@@ -9,13 +9,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PesanController extends Controller
 {
-    public function index(User $user){
-        return view('pesan.index',[
+    public function index(User $user)
+    {
+        return view('pesan.index', [
             'user' => $user,
             'baseurl' => Controller::BASEURL,
             'kataRandom' => [
-                'Apakah kamu baik-baik saja?', 
-                'Udah makan belom?', 
+                'Apakah kamu baik-baik saja?',
+                'Udah makan belom?',
                 'Udah punya pacar belum?',
                 'Makanan favorite kamu apa?',
                 'Minuman favorite kamu apa?',
@@ -41,7 +42,8 @@ class PesanController extends Controller
         ]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $validatedData = $request->validate([
             'id' => 'required',
             'pesan' => 'required|min:2',
@@ -58,21 +60,32 @@ class PesanController extends Controller
         return back();
     }
 
-    public function kirimpesan(Request $request){
+    public function kirimpesan(Request $request)
+    {
         $users = User::all();
         $row = [];
-        foreach($users as $user){
+        foreach ($users as $user) {
             $row[] = strtolower($user->username);
         }
 
-        for($i=0;$i<count($users);++$i){
-            if($row[$i] === strtolower($request->kirimpesan)){
-                $cek = redirect('/u/'. strtolower($request->kirimpesan));
+        for ($i = 0; $i < count($users); ++$i) {
+            if ($row[$i] === strtolower($request->kirimpesan)) {
+                $cek = redirect('/u/' . strtolower($request->kirimpesan));
                 return $cek;
             }
         }
         Alert::toast('Username tidak ditemukan', 'warning');
         // return redirect('/home#kirimpesan')->with('failed', $request->kirimpesan);
+        return back();
+    }
+
+    public function deleteAllMessage()
+    {
+        $UserId = auth()->user()->id;
+
+        Pesan::where('user_id', $UserId)->delete();
+
+        Alert::toast('Semua Pesan berhasil dihapus', 'success');
         return back();
     }
 }

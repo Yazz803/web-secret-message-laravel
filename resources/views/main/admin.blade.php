@@ -43,18 +43,11 @@
                 @endif
             </td>
             <td class="text-center fs-6">
-                @php
-                    $hapusUser = $user->id;
-                @endphp
-                <a href="#" class="btn btn-secondary" onclick="return hapus()">Delete?</a>
+                <span class="btn btn-secondary" onclick="return hapus{{ $user->id }}()">Delete?</span>
             </td>
         </tr>
         @endif
         @endforeach
-        {{-- kalau gk ada data user, maka code php dibawah in yg akan dijalankan --}}
-        @php
-            $hapusUser = false;
-        @endphp
     </table>
     <div class="m-4">
         {{ $users->links() }}
@@ -63,7 +56,8 @@
 
 <script>
     // swal hapus
-    function hapus() {
+    @foreach($users as $user)
+    function hapus{{ $user->id }}() {
           Swal.fire({
           title: 'Hapus User?',
           imageUrl: '/assets/img/anime-crying2.gif',
@@ -82,10 +76,11 @@
           cancelButtonText: 'Enggak'
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.href= '/delete/{{ $hapusUser }}'
+            window.location.href= '/delete/{{ $user->id }}'
           }
         })
     }
+    @endforeach
   </script>
 
 @endsection

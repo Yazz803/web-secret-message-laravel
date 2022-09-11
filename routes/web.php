@@ -42,6 +42,7 @@ Route::resource('/pesan', LihatPesanController::class)->middleware('auth');
 
 Route::get('/u/{user:username}', [PesanController::class, 'index'])->middleware('auth');
 Route::post('/kirimpesan', [PesanController::class, 'store']);
+Route::get('/deleteallmessage', [PesanController::class, 'deleteAllMessage'])->middleware('auth');
 
 Route::get('/reply/{pesan:id}', [ReplyPesanController::class, 'index'])->middleware('auth');
 Route::post('/kirimreply', [ReplyPesanController::class, 'store']);

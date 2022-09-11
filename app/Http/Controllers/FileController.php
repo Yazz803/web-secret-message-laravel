@@ -136,8 +136,25 @@ class FileController extends Controller
             }
         }
 
-        
-        Alert::toast('Berhasil di ubah', 'success');
+        $dataName = $request->get('name') === $user->name;
+        $dataIG = $request->get('instagram') === $user->instagram;
+        $dataFB = $request->get('facebook') === $user->facebook;
+        $dataDC = $request->get('discord') === $user->discord;
+        $dataTT = $request->get('tiktok') === $user->tiktok;
+        $dataPPuser = true; // kalau gk ada upload image
+        $dataBgPPuser = true; // kalau gk ada upload image
+        if($request->file('PPuser')){
+            $dataPPuser = $request->file('PPuser')->getClientOriginalName() === $user->PPuser;
+        }
+        if($request->file('BgPPuser')){
+            $dataBgPPuser = $request->file('BgPPuser')->getClientOriginalName() === $user->PPuser;
+        }
+        // kalau ganti gambar, yg keluar malah "tidak ada yg diubah" -> solving nanti // fixed
+        if($dataName && $dataDC && $dataFB && $dataIG && $dataTT && $dataPPuser && $dataBgPPuser){
+            Alert::toast('Tidak ada yg di ubah!', 'warning');
+        }else{
+            Alert::toast('Berhasil di ubah', 'success');
+        }
 
         User::where('username', $user->username)->update($validatedData);
 
