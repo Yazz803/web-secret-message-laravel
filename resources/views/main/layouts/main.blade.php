@@ -140,6 +140,11 @@
         </ul>
     	</nav>
 
+      {{-- logout buat mobile --}}
+      <div class="logout-mobile">
+        <span class="fa fa-sign-out fs-3" onclick="return Logout()"></span>
+      </div>
+      {{-- end logout buat mobile --}}
 
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
